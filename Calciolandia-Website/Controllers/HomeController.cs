@@ -1,4 +1,4 @@
-﻿using Calciolandia_Website.Models;
+﻿using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
