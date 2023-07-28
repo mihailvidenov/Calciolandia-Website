@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Calciolandia_Website.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;

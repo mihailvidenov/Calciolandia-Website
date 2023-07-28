@@ -1,5 +1,8 @@
+using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Data;
+using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
+using Calciolandia_Website.Core.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +25,15 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<ILeagueService, LeagueService>();
+
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/User/Login";
+});
 
 var app = builder.Build();
 
