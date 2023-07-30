@@ -45,29 +45,26 @@ namespace Calciolandia_Website.Core.Data.Models
         [Required]
         public bool IsDeleted { get; set; }
 
-        [Required]
-        public int LeagueId { get; set; }
+
+        public int? LeagueId { get; set; }
 
         [ForeignKey(nameof(LeagueId))]
-        public League League { get; set; } = null!;
+        public League League { get; set; } 
 
-        [Required]
-        public Guid OwnerId { get; set; }
+        public Guid? OwnerId { get; set; }
 
         [ForeignKey(nameof(OwnerId))]
-        public Owner Owner { get; set; } = null!;
+        public Owner Owner { get; set; } 
 
-        [Required]
-        public Guid ManagerId { get; set; }
+        public Guid? ManagerId { get; set; }
 
         [ForeignKey(nameof(ManagerId))]
-        public Manager Manager { get; set; } = null!;
+        public Manager Manager { get; set; } 
 
-        [Required]
-        public int StadiumId { get; set; }
+        public int? StadiumId { get; set; }
 
         [ForeignKey(nameof(StadiumId))]
-        public Stadium Stadium { get; set; } = null!;
+        public Stadium Stadium { get; set; } 
 
         public List<Player> Players { get; set; } = null!;
     }

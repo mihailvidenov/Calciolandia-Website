@@ -1,5 +1,20 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<LeagueViewModel>
+
 @{
+    ViewBag.Title = "Italian leagues";
 }
+
+<div class="text-center row">
+    @foreach (var league in Model)
+    {
+        <div class="card col-4" style="width: 20rem;">
+            <img class="card-img-top" style="width: 18rem;"
+             src="@league.LogoImageUrl" alt="Book Image">
+            <div class="card-body">
+
+                <h5 class="card-title mt-1">@league.Name</h5>
+                <p class="mb-0">Country: @league.Country</p>
+            </div>
+        </div>
+    }
+</div>

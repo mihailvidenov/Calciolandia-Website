@@ -35,8 +35,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task DeleteAsync(int id)
         {
-            var league = await repo.All<League>()
-                 .FirstOrDefaultAsync(l => l.Id == id);
+            var league = await repo.GetByIdAsync<League>(id);
 
             if (league != null)
             {

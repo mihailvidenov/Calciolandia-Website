@@ -47,10 +47,9 @@ namespace Calciolandia_Website.Core.Data.Models
         [Required]
         public bool IsDeleted { get; set; }
 
-        [Required]
-        public int FootballClubId { get; set; }
+        public int? FootballClubId { get; set; }
 
         [ForeignKey(nameof(FootballClubId))]
-        public FootballClub FootballClub { get; set; } = null!;
+        public FootballClub FootballClub { get; set; } 
     }
 }
