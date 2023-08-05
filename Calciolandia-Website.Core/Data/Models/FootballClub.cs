@@ -13,6 +13,8 @@ namespace Calciolandia_Website.Core.Data.Models
         public FootballClub()
         {
             this.Players = new List<Player>();
+            this.Owners = new List<Owner>();
+            this.Managers = new List<Manager>();
         }
 
         [Key]
@@ -32,8 +34,8 @@ namespace Calciolandia_Website.Core.Data.Models
         [Required]
         public string LogoImageUrl { get; set; } = null!;
 
-        [Required]
-        public DateTime FoundedYear { get; set; }
+        
+        public int? FoundedYear { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -51,21 +53,21 @@ namespace Calciolandia_Website.Core.Data.Models
         [ForeignKey(nameof(LeagueId))]
         public League League { get; set; } 
 
-        public Guid? OwnerId { get; set; }
-
-        [ForeignKey(nameof(OwnerId))]
-        public Owner Owner { get; set; } 
-
-        public Guid? ManagerId { get; set; }
-
-        [ForeignKey(nameof(ManagerId))]
-        public Manager Manager { get; set; } 
-
         public int? StadiumId { get; set; }
 
         [ForeignKey(nameof(StadiumId))]
         public Stadium Stadium { get; set; } 
 
         public List<Player> Players { get; set; } = null!;
+
+        public Guid? ManagerId { get; set; }
+
+        [ForeignKey(nameof(ManagerId))]
+        public IEnumerable<Manager> Managers { get; set; }
+
+        public Guid? OwnerId { get; set; }
+
+        [ForeignKey(nameof(OwnerId))]
+        public IEnumerable<Owner> Owners { get; set; }
     }
 }

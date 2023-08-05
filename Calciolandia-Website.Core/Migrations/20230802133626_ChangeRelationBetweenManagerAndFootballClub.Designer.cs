@@ -4,6 +4,7 @@ using Calciolandia_Website.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Calciolandia_Website.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230802133626_ChangeRelationBetweenManagerAndFootballClub")]
+    partial class ChangeRelationBetweenManagerAndFootballClub
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,8 +117,8 @@ namespace Calciolandia_Website.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("FoundedYear")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("FoundedYear")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -157,6 +159,10 @@ namespace Calciolandia_Website.Core.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LeagueId");
+
+                    b.HasIndex("OwnerId")
+                        .IsUnique()
+                        .HasFilter("[OwnerId] IS NOT NULL");
 
                     b.HasIndex("StadiumId");
 
@@ -273,7 +279,6 @@ namespace Calciolandia_Website.Core.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int?>("FootballClubId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
@@ -296,12 +301,7 @@ namespace Calciolandia_Website.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("OwnerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("FootballClubId");
 
                     b.ToTable("Owners");
                 });
@@ -553,6 +553,10 @@ namespace Calciolandia_Website.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Calciolandia_Website.Core.Data.Models.Owner", "Owner")
+                        .WithOne("FootballClub")
+                        .HasForeignKey("Calciolandia_Website.Core.Data.Models.FootballClub", "OwnerId");
+
                     b.HasOne("Calciolandia_Website.Core.Data.Models.Stadium", "Stadium")
                         .WithMany("FootballClubs")
                         .HasForeignKey("StadiumId")
@@ -561,6 +565,8 @@ namespace Calciolandia_Website.Core.Migrations
 
                     b.Navigation("League");
 
+                    b.Navigation("Owner");
+
                     b.Navigation("Stadium");
                 });
 
@@ -568,17 +574,6 @@ namespace Calciolandia_Website.Core.Migrations
                 {
                     b.HasOne("Calciolandia_Website.Core.Data.Models.FootballClub", "FootballClub")
                         .WithMany("Managers")
-                        .HasForeignKey("FootballClubId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FootballClub");
-                });
-
-            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Owner", b =>
-                {
-                    b.HasOne("Calciolandia_Website.Core.Data.Models.FootballClub", "FootballClub")
-                        .WithMany("Owners")
                         .HasForeignKey("FootballClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -652,14 +647,18 @@ namespace Calciolandia_Website.Core.Migrations
                 {
                     b.Navigation("Managers");
 
-                    b.Navigation("Owners");
-
                     b.Navigation("Players");
                 });
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.League", b =>
                 {
                     b.Navigation("FootballClubs");
+                });
+
+            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Owner", b =>
+                {
+                    b.Navigation("FootballClub")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Stadium", b =>

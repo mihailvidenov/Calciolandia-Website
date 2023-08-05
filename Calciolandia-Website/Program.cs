@@ -29,6 +29,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<ILeagueService, LeagueService>();
 builder.Services.AddScoped<IStadiumService, StadiumService>();
+builder.Services.AddScoped<IFootballClubService, FootballClubService>();
 
 
 builder.Services.ConfigureApplicationCookie(options =>

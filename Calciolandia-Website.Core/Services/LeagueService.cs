@@ -1,7 +1,7 @@
 ﻿using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
-using Calciolandia_Website.Core.Models.League;
+using Calciolandia_Website.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

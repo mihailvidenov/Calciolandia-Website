@@ -1,5 +1,5 @@
 ﻿using Calciolandia_Website.Core.Contracts;
-using Calciolandia_Website.Core.Models.Stadium;
+using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calciolandia_Website.Controllers

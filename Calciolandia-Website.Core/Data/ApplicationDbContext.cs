@@ -25,8 +25,8 @@ namespace Calciolandia_Website.Core.Data
 
             builder.Entity<FootballClub>(f =>
             {
-                f.HasOne(f => f.Manager).WithOne(f => f.FootballClub);
-                f.HasOne(f => f.Owner).WithOne(f => f.FootballClub);
+                f.HasMany(f => f.Managers).WithOne(f => f.FootballClub);
+                f.HasMany(f => f.Owners).WithOne(f => f.FootballClub);
                 f.HasMany(f => f.Players).WithOne(f => f.FootballClub);
                 f.Property(f => f.IsDeleted).HasDefaultValue(false);
             });
@@ -39,13 +39,13 @@ namespace Calciolandia_Website.Core.Data
 
             builder.Entity<Manager>(m =>
             {
-                m.HasOne(m => m.FootballClub).WithOne(m => m.Manager);
+             
                 m.Property(m => m.IsDeleted).HasDefaultValue(false);
             });
 
             builder.Entity<Owner>(o =>
             {
-                o.HasOne(o => o.FootballClub).WithOne(o => o.Owner);
+               
                 o.Property(o => o.IsDeleted).HasDefaultValue(false);
             });
 

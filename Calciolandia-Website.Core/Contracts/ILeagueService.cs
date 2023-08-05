@@ -1,4 +1,4 @@
-﻿using Calciolandia_Website.Core.Models.League;
+﻿using Calciolandia_Website.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

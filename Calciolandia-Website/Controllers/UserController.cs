@@ -1,5 +1,5 @@
 ﻿using Calciolandia_Website.Core.Data.Models;
-using Calciolandia_Website.Core.Models.User;
+using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calciolandia_Website.Core.Models.Stadium
+namespace Calciolandia_Website.Core.Models
 {
     public class StadiumViewModel
     {

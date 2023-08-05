@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calciolandia_Website.Core.Models.User
+namespace Calciolandia_Website.Core.Models
 {
     public class LoginViewModel
     {
