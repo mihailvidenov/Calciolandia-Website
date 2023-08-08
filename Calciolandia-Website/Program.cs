@@ -30,6 +30,8 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<ILeagueService, LeagueService>();
 builder.Services.AddScoped<IStadiumService, StadiumService>();
 builder.Services.AddScoped<IFootballClubService, FootballClubService>();
+builder.Services.AddScoped<IManagerService, ManagerService>();
+builder.Services.AddScoped<IOwnerService, OwnerService>();
 
 
 builder.Services.ConfigureApplicationCookie(options =>
