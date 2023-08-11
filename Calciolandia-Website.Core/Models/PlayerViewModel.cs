@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Calciolandia_Website.Core.Models
 {
-    public class OwnerViewModel
+    public class PlayerViewModel
     {
         [Key]
         public Guid Id { get; set; }
@@ -18,9 +18,9 @@ namespace Calciolandia_Website.Core.Models
         [StringLength(20, MinimumLength = 3)]
         public string FirstName { get; set; } = null!;
 
-        [Required]
-        [StringLength(20, MinimumLength = 3)]
-        public string MiddleName { get; set; } = null!;
+        //[Required]
+        //[StringLength(20)]
+        //public string MiddleName { get; set; } = null!;
 
         [Required]
         [StringLength(20, MinimumLength = 3)]
@@ -35,6 +35,25 @@ namespace Calciolandia_Website.Core.Models
 
         [Required]
         public DateTime BirthDate { get; set; }
+
+        [Required]
+        public DateTime ContractSignedDate { get; set; }
+
+        [Required]
+        public DateTime ContractExpiredDate { get; set; }
+
+        //[Required]
+        //public decimal Salary { get; set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
+        public string Position { get; set; } = null!;
+
+        [Required]
+        public decimal MarketValue { get; set; }
+
+        public string? ImageUrl { get; set; }
+
 
         public int? FootballClubId { get; set; }
 

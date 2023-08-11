@@ -15,7 +15,7 @@ namespace Calciolandia_Website.Core.Data
         public DbSet<FootballClub> FootballClubs { get; set; }
         public DbSet<League> Leagues { get; set; }
         public DbSet<Manager> Managers { get; set; }
-        public DbSet<Owner> Owners { get; set; }
+        public DbSet<President> Presidents { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
 
@@ -26,7 +26,7 @@ namespace Calciolandia_Website.Core.Data
             builder.Entity<FootballClub>(f =>
             {
                 f.HasMany(f => f.Managers).WithOne(f => f.FootballClub);
-                f.HasMany(f => f.Owners).WithOne(f => f.FootballClub);
+                f.HasMany(f => f.Presidents).WithOne(f => f.FootballClub);
                 f.HasMany(f => f.Players).WithOne(f => f.FootballClub);
                 f.Property(f => f.IsDeleted).HasDefaultValue(false);
             });
@@ -43,7 +43,7 @@ namespace Calciolandia_Website.Core.Data
                 m.Property(m => m.IsDeleted).HasDefaultValue(false);
             });
 
-            builder.Entity<Owner>(o =>
+            builder.Entity<President>(o =>
             {
                
                 o.Property(o => o.IsDeleted).HasDefaultValue(false);

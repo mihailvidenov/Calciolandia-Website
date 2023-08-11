@@ -11,25 +11,26 @@ using System.Threading.Tasks;
 
 namespace Calciolandia_Website.Core.Services
 {
-    public class OwnerService : IOwnerService
+    public class PresidentService : IPresidentService
     {
         private readonly IRepository repo;
 
-        public OwnerService(IRepository _repo)
+        public PresidentService(IRepository _repo)
         {
             repo = _repo;
         }
 
-        public async Task AddAsync(OwnerViewModel model)
+        public async Task AddAsync(PresidentViewModel model)
         {
-            var owner = new Owner()
+            var owner = new President()
             {
                 FirstName = model.FirstName,
-                MiddleName = model.MiddleName,
+                //MiddleName = model.MiddleName,
                 LastName = model.LastName,
                 Age = model.Age,
                 Nationality = model.Nationality,
                 BirthDate = model.BirthDate,
+                ImageUrl = model.ImageUrl,
                 FootballClubId = model.FootballClubId
             };
 
@@ -39,7 +40,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            var owner = await repo.GetByIdAsync<Owner>(id);
+            var owner = await repo.GetByIdAsync<President>(id);
 
             if (owner != null)
             {
@@ -48,20 +49,21 @@ namespace Calciolandia_Website.Core.Services
             }
         }
 
-        public async Task<IEnumerable<OwnerViewModel>> GetAllAsync()
+        public async Task<IEnumerable<PresidentViewModel>> GetAllAsync()
         {
-            var entities = await repo.AllReadonly<Owner>()
+            var entities = await repo.AllReadonly<President>()
                 .Where(o => o.IsDeleted == false)
                 .ToListAsync();
 
-            return entities.Select(e => new OwnerViewModel()
+            return entities.Select(e => new PresidentViewModel()
             {
                 FirstName = e.FirstName,
-                MiddleName = e.MiddleName,
+                //MiddleName = e.MiddleName,
                 LastName = e.LastName,
                 Age = e.Age,
                 Nationality = e.Nationality,
                 BirthDate = e.BirthDate,
+                ImageUrl = e.ImageUrl,
                 FootballClubId = e.FootballClubId
             });
         }

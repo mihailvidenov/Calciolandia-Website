@@ -13,7 +13,7 @@ namespace Calciolandia_Website.Core.Data.Models
         public FootballClub()
         {
             this.Players = new List<Player>();
-            this.Owners = new List<Owner>();
+            this.Presidents = new List<President>();
             this.Managers = new List<Manager>();
         }
 
@@ -65,9 +65,9 @@ namespace Calciolandia_Website.Core.Data.Models
         [ForeignKey(nameof(ManagerId))]
         public IEnumerable<Manager> Managers { get; set; }
 
-        public Guid? OwnerId { get; set; }
+        public Guid? PresidentId { get; set; }
 
-        [ForeignKey(nameof(OwnerId))]
-        public IEnumerable<Owner> Owners { get; set; }
+        [ForeignKey(nameof(PresidentId))]
+        public IEnumerable<President> Presidents { get; set; }
     }
 }

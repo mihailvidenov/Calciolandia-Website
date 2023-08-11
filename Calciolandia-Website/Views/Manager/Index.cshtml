@@ -7,22 +7,22 @@
 <div class="text-center row">
     @foreach (var manager in Model)
     {
-       @* <div class="card col-4" style="width: 20rem;">
+        <div class="card col-4" style="width: 20rem;">
             <img class="card-img-top" style="width: 18rem;"
-             src="@footballClub.LogoImageUrl" alt="Book Image">*@
+             src="@manager.ImageUrl" alt="Manager Image">
             <div class="card-body">
 
                 <h5 class="card-title mt-1">First name: @manager.FirstName</h5>
-            <p class="card-title mt-1">Middle name: @manager.MiddleName</p>
-            <p class="card-title mt-1">Last name: @manager.LastName</p>
+            @*<p class="card-title mt-1">Middle name: @manager.MiddleName</p>*@
+            <h5 class="card-title mt-1">Last name: @manager.LastName</h5>
                 <p class="mb-0">Age: @manager.Age</p>
                 <p class="mb-0">Birth date: @manager.BirthDate</p>
             <p class="mb-0">Nationality: @manager.Nationality</p>
-            <p class="mb-0">Salary: @manager.Salary</p>
+            @*<p class="mb-0">Salary: @manager.Salary</p>*@
             <p class="mb-0">Contract signed date: @manager.ContractSignedDate</p>
                 <p class="mb-0">Contract expired date: @manager.ContractExpiredDate</p>
             </div>
-        @*</div>*@
+        </div>
     }
 </div>
 

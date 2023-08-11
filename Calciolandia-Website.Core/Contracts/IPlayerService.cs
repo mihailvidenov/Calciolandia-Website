@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Calciolandia_Website.Core.Contracts
 {
-    public interface IOwnerService
+    public interface IPlayerService
     {
-        Task<IEnumerable<OwnerViewModel>> GetAllAsync();
+        Task<IEnumerable<PlayerViewModel>> GetAllAsync();
 
-        Task AddAsync(OwnerViewModel model);
+        Task AddAsync(PlayerViewModel model);
 
         Task DeleteAsync(Guid id);
 
         Task<IEnumerable<FootballClub>> GetAllFootballClubsAsync();
-    }
+    } 
 }

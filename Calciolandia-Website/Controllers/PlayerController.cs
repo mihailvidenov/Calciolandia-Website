@@ -4,18 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Calciolandia_Website.Controllers
 {
-    public class OwnerController : BaseController
+    public class PlayerController : BaseController
     {
-        private readonly IOwnerService ownerService;
+        private readonly IPlayerService playerService;
 
-        public OwnerController(IOwnerService _ownerService)
+        public PlayerController(IPlayerService _playerService)
         {
-            ownerService = _ownerService;
+            playerService = _playerService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var model = await ownerService.GetAllAsync();
+            var model = await playerService.GetAllAsync();
 
             return View(model);
         }
@@ -23,16 +23,16 @@ namespace Calciolandia_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var model = new OwnerViewModel()
+            var model = new PlayerViewModel()
             {
-                FootballClubs = await ownerService.GetAllFootballClubsAsync()
+                FootballClubs = await playerService.GetAllFootballClubsAsync()
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(OwnerViewModel model)
+        public async Task<IActionResult> Add(PlayerViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -41,12 +41,12 @@ namespace Calciolandia_Website.Controllers
 
             try
             {
-                await ownerService.AddAsync(model);
+                await playerService.AddAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
             {
-                ModelState.AddModelError("", "Invalid data for owner");
+                ModelState.AddModelError("", "Invalid data for player");
 
                 return View(model);
             }
@@ -54,7 +54,7 @@ namespace Calciolandia_Website.Controllers
 
         public async Task<IActionResult> Delete(Guid id)
         {
-            await ownerService.DeleteAsync(id);
+            await playerService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }

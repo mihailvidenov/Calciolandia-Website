@@ -25,14 +25,15 @@ namespace Calciolandia_Website.Core.Services
             var manager = new Manager()
             {
                 FirstName = model.FirstName,
-                MiddleName = model.MiddleName,
+                //MiddleName = model.MiddleName,
                 LastName = model.LastName,
                 Age = model.Age,
                 Nationality = model.Nationality,
                 BirthDate = model.BirthDate,
-                Salary = model.Salary,
+                //Salary = model.Salary,
                 ContractSignedDate = model.ContractSignedDate,
                 ContractExpiredDate = model.ContractExpiredDate,
+                ImageUrl = model.ImageUrl,
                 FootballClubId = model.FootballClubId
             };
 
@@ -60,14 +61,15 @@ namespace Calciolandia_Website.Core.Services
             return entities.Select(m => new ManagerViewModel()
             {
                 FirstName = m.FirstName,
-                MiddleName = m.MiddleName,
+                //MiddleName = m.MiddleName,
                 LastName = m.LastName,
                 Age = m.Age,
                 Nationality =  m.Nationality,
                 BirthDate = m.BirthDate,
-                Salary = m.Salary,
+                //Salary = m.Salary,
                 ContractSignedDate = m.ContractSignedDate,
                 ContractExpiredDate = m.ContractExpiredDate,
+                ImageUrl = m.ImageUrl,
                 FootballClubId = m.FootballClubId
             });
             

@@ -4,6 +4,7 @@ using Calciolandia_Website.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Calciolandia_Website.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230808113215_RemoveMiddleNameForManagerOwnerAndPlayer")]
+    partial class RemoveMiddleNameForManagerOwnerAndPlayer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,7 +146,7 @@ namespace Calciolandia_Website.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid?>("PresidentId")
+                    b.Property<Guid?>("OwnerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("StadiumId")
@@ -243,11 +245,63 @@ namespace Calciolandia_Website.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FootballClubId");
 
                     b.ToTable("Managers");
+                });
+
+            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Owner", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("FootballClubId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FootballClubId");
+
+                    b.ToTable("Owners");
                 });
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Player", b =>
@@ -303,60 +357,14 @@ namespace Calciolandia_Website.Core.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FootballClubId");
 
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.President", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int?>("FootballClubId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Nationality")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("PresidentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FootballClubId");
-
-                    b.ToTable("Presidents");
                 });
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Stadium", b =>
@@ -563,10 +571,10 @@ namespace Calciolandia_Website.Core.Migrations
                     b.Navigation("FootballClub");
                 });
 
-            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Player", b =>
+            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Owner", b =>
                 {
                     b.HasOne("Calciolandia_Website.Core.Data.Models.FootballClub", "FootballClub")
-                        .WithMany("Players")
+                        .WithMany("Owners")
                         .HasForeignKey("FootballClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -574,10 +582,10 @@ namespace Calciolandia_Website.Core.Migrations
                     b.Navigation("FootballClub");
                 });
 
-            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.President", b =>
+            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Player", b =>
                 {
                     b.HasOne("Calciolandia_Website.Core.Data.Models.FootballClub", "FootballClub")
-                        .WithMany("Presidents")
+                        .WithMany("Players")
                         .HasForeignKey("FootballClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -640,9 +648,9 @@ namespace Calciolandia_Website.Core.Migrations
                 {
                     b.Navigation("Managers");
 
-                    b.Navigation("Players");
+                    b.Navigation("Owners");
 
-                    b.Navigation("Presidents");
+                    b.Navigation("Players");
                 });
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.League", b =>
