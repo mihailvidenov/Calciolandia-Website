@@ -6,16 +6,16 @@ namespace Calciolandia_Website.Controllers
 {
     public class PresidentController : BaseController
     {
-        private readonly IPresidentService ownerService;
+        private readonly IPresidentService presidentService;
 
-        public PresidentController(IPresidentService _ownerService)
+        public PresidentController(IPresidentService _presidentService)
         {
-            ownerService = _ownerService;
+            presidentService = _presidentService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var model = await ownerService.GetAllAsync();
+            var model = await presidentService.GetAllAsync();
 
             return View(model);
         }
@@ -25,7 +25,7 @@ namespace Calciolandia_Website.Controllers
         {
             var model = new PresidentViewModel()
             {
-                FootballClubs = await ownerService.GetAllFootballClubsAsync()
+                FootballClubs = await presidentService.GetAllFootballClubsAsync()
             };
 
             return View(model);
@@ -41,7 +41,7 @@ namespace Calciolandia_Website.Controllers
 
             try
             {
-                await ownerService.AddAsync(model);
+                await presidentService.AddAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -54,9 +54,41 @@ namespace Calciolandia_Website.Controllers
 
         public async Task<IActionResult> Delete(Guid id)
         {
-            await ownerService.DeleteAsync(id);
+            await presidentService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var model = await presidentService.GetForEditAsync(id);
+
+            model.FootballClubs = await presidentService.GetAllFootballClubsAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(PresidentViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                await presidentService.EditAsync(model);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Invalid data for president");
+
+                return View(model);
+            }
         }
     }
 }
