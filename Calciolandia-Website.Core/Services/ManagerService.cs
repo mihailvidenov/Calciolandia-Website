@@ -62,6 +62,7 @@ namespace Calciolandia_Website.Core.Services
 
             return entities.Select(m => new ManagerViewModel()
             {
+                Id = m.Id,
                 FirstName = m.FirstName,
                 //MiddleName = m.MiddleName,
                 LastName = m.LastName,
