@@ -32,6 +32,8 @@ namespace Calciolandia_Website.Core.Data.Models
         [Required]
         public int Age { get; set; }
 
+        public int? Number { get; set; }
+
         [Required]
         public DateTime BirthDate { get; set; }
 

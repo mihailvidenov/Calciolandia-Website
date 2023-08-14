@@ -55,6 +55,8 @@ namespace Calciolandia_Website.Core.Models
         public string? ImageUrl { get; set; }
 
 
+        public int? Number { get; set; }
+
         public int? FootballClubId { get; set; }
 
         public IEnumerable<FootballClub> FootballClubs { get; set; } = new List<FootballClub>();

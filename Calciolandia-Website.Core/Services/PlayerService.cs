@@ -34,6 +34,7 @@ namespace Calciolandia_Website.Core.Services
                 ContractExpiredDate = model.ContractExpiredDate,
                 FootballClubId = model.FootballClubId,
                 ImageUrl = model.ImageUrl,
+                Number = model.Number,
                 MarketValue = model.MarketValue
 
             };
@@ -72,6 +73,7 @@ namespace Calciolandia_Website.Core.Services
                 ContractExpiredDate = e.ContractExpiredDate,
                 ImageUrl = e.ImageUrl,
                 MarketValue = e.MarketValue,
+                Number = e.Number,
                 FootballClubId = e.FootballClubId
             });
         }
