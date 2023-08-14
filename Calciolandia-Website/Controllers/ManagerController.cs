@@ -88,36 +88,6 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
-        {
-            var model = await managerService.GetForEditAsync(id);
-
-            model.FootballClubs = await managerService.GetFootballClubsAsync();
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(ManagerViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            try
-            {
-                await managerService.EditAsync(model);
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("", "Invalid data for manager");
-
-                return View(model);
-            }
-        }
+       
     }
 }

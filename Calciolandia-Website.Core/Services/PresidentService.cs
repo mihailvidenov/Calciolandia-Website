@@ -49,6 +49,8 @@ namespace Calciolandia_Website.Core.Services
             }
         }
 
+
+
         public async Task<IEnumerable<PresidentViewModel>> GetAllAsync()
         {
             var entities = await repo.AllReadonly<President>()
@@ -73,6 +75,40 @@ namespace Calciolandia_Website.Core.Services
             return await repo.All<FootballClub>()
                 .Where(f => f.IsDeleted == false)
                 .ToListAsync();
+        }
+
+        public async Task<PresidentViewModel> GetForEditAsync(Guid id)
+        {
+            var president = await repo.GetByIdAsync<President>(id);
+
+            var model = new PresidentViewModel()
+            {
+                Id = president.Id,
+                FirstName = president.FirstName,
+                LastName = president.LastName,
+                Nationality = president.Nationality,
+                Age = president.Age,
+                BirthDate = president.BirthDate,
+                ImageUrl = president.ImageUrl,
+                FootballClubId = president.FootballClubId
+            };
+
+            return model;
+        }
+
+        public async Task EditAsync(PresidentViewModel model)
+        {
+            var president = await repo.GetByIdAsync<President>(model.Id);
+
+            president.FirstName = model.FirstName;
+            president.LastName = model.LastName;
+            president.Nationality = model.Nationality;
+            president.Age = model.Age;
+            president.BirthDate = model.BirthDate;
+            president.ImageUrl = model.ImageUrl;
+            president.FootballClubId = model.FootballClubId;
+
+            await repo.SaveChangesAsync();
         }
     }
 }
