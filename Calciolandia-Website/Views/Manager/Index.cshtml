@@ -22,6 +22,9 @@
             <p class="mb-0">Contract signed date: @manager.ContractSignedDate</p>
                 <p class="mb-0">Contract expired date: @manager.ContractExpiredDate</p>
             </div>
+            <div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-primary">Edit</a>
+            </div>
         </div>
     }
 </div>
