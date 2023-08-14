@@ -1,5 +1,6 @@
 ﻿using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Models;
+using Calciolandia_Website.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calciolandia_Website.Controllers
@@ -57,6 +58,38 @@ namespace Calciolandia_Website.Controllers
             await playerService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var model = await playerService.GetForEditAsync(id);
+
+            model.FootballClubs = await playerService.GetAllFootballClubsAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(PlayerViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                await playerService.EditAsync(model);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Invalid data for player");
+
+                return View(model);
+            }
         }
     }
 }
