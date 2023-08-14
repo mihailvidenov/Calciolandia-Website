@@ -19,6 +19,9 @@
             <p class="mb-0">Birth date: @president.BirthDate</p>
             <p class="mb-0">Nationality: @president.Nationality</p>
         </div>
+        <div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-primary">Edit</a>
+            </div>
         </div>
     }
 </div>
