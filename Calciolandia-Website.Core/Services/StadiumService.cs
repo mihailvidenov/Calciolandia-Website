@@ -60,6 +60,7 @@ namespace Calciolandia_Website.Core.Services
 
             return entities.Select(s => new StadiumViewModel()
             {
+                Id = s.Id,
                 Name = s.Name,
                 Capacity = s.Capacity,
                 ImageUrl = s.ImageUrl,

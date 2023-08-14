@@ -17,6 +17,9 @@
                 <p class="mb-0">Address: @stadium.Address</p>
                 <p class="mb-0">City: @stadium.City</p>
             </div>
+            <div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-primary">Edit</a>
+            </div>
         </div>
     }
 </div>
