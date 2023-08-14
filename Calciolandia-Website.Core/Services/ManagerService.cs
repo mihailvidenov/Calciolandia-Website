@@ -52,6 +52,8 @@ namespace Calciolandia_Website.Core.Services
             }
         }
 
+        
+
         public async Task<IEnumerable<ManagerViewModel>> GetAllAsync()
         {
             var entities = await repo.AllReadonly<Manager>()
@@ -80,6 +82,44 @@ namespace Calciolandia_Website.Core.Services
             return await repo.All<FootballClub>()
                 .Where(f => f.IsDeleted == false)
                 .ToListAsync();
+        }
+
+        public async Task<ManagerViewModel> GetForEditAsync(Guid id)
+        {
+            var manager = await repo.GetByIdAsync<Manager>(id);
+
+            var model = new ManagerViewModel()
+            {
+                Id = manager.Id,
+                FirstName = manager.FirstName,
+                LastName = manager.LastName,
+                Nationality = manager.Nationality,
+                Age = manager.Age,
+                BirthDate = manager.BirthDate,
+                ContractSignedDate = manager.ContractSignedDate,
+                ContractExpiredDate = manager.ContractExpiredDate,
+                ImageUrl = manager.ImageUrl,
+                FootballClubId = manager.FootballClubId
+            };
+
+            return model;
+        }
+
+        public async Task EditAsync(ManagerViewModel model)
+        {
+            var manager = await repo.GetByIdAsync<Manager>(model.Id);
+
+            manager.FirstName = model.FirstName;
+            manager.LastName = model.LastName;
+            manager.Nationality = model.Nationality;
+            manager.Age = model.Age;
+            manager.BirthDate = model.BirthDate;
+            manager.ContractSignedDate = model.ContractSignedDate;
+            manager.ContractExpiredDate = model.ContractExpiredDate;
+            manager.ImageUrl = model.ImageUrl;
+            manager.FootballClubId = model.FootballClubId;
+
+            await repo.SaveChangesAsync();
         }
     }
 }

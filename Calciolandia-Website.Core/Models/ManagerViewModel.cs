@@ -43,8 +43,7 @@ namespace Calciolandia_Website.Core.Models
 
         public string? ImageUrl { get; set; }
 
-        [Required]
-        public decimal Salary { get; set; }
+        
 
         public int? FootballClubId { get; set; }
 
