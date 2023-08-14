@@ -25,6 +25,9 @@
                 <p class="mb-0">Contract signed date: @player.ContractSignedDate</p>
                 <p class="mb-0">Contract expired date: @player.ContractExpiredDate</p>
             </div>
+            <div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-primary">Edit</a>
+            </div>
         </div>
     }
 </div>
