@@ -17,5 +17,9 @@ namespace Calciolandia_Website.Core.Contracts
         Task DeleteAsync(Guid id);
 
         Task<IEnumerable<FootballClub>> GetAllFootballClubsAsync();
+
+        //Task<PlayerViewModel> GetForEditAsync(Guid id);
+
+        //Task EditAsync(PlayerViewModel model);
     } 
 }

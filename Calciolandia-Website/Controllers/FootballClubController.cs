@@ -1,6 +1,7 @@
 ﻿using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Calciolandia_Website.Controllers
 {
@@ -59,6 +60,38 @@ namespace Calciolandia_Website.Controllers
             await footballClubService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await footballClubService.GetForEditAsync(id);
+
+            model.Leagues = await footballClubService.GetLeaguesAsync();
+            model.Stadiums = await footballClubService.GetStadiumsAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(FootballClubViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                await footballClubService.EditAsync(model);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Invalid data for football club");
+
+                return View(model);
+            }
         }
     }
 }

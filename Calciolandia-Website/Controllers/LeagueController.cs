@@ -57,5 +57,33 @@ namespace Calciolandia_Website.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await leagueService.GetForEditAsync(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(LeagueViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                await leagueService.EditAsync(model);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Invalid data for league");
+                return View(model);
+            }
+        }
     }
 }

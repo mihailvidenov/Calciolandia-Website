@@ -51,6 +51,8 @@ namespace Calciolandia_Website.Core.Services
 
         }
 
+       
+
         public async Task<IEnumerable<FootballClubViewModel>> GetAllAsync()
         {
             var entities = await repo.AllReadonly<FootballClub>()
@@ -59,6 +61,7 @@ namespace Calciolandia_Website.Core.Services
             return entities
                 .Select(e => new FootballClubViewModel()
                 {
+                    Id = e.Id,
                     Name = e.Name,
                     Nickname = e.Nickname,
                     Trophies = e.Trophies,
@@ -69,6 +72,45 @@ namespace Calciolandia_Website.Core.Services
                     StadiumId = e.StadiumId,
                     LeagueId = e.LeagueId
                 });
+        }
+
+        public async Task<FootballClubViewModel> GetForEditAsync(int id)
+        {
+            var footballClub = await repo.GetByIdAsync<FootballClub>(id);
+
+            var model = new FootballClubViewModel()
+            {
+                Id = footballClub.Id,
+                Name = footballClub.Name,
+                Nickname = footballClub.Nickname,
+                Trophies = footballClub.Trophies,
+                LogoImageUrl = footballClub.LogoImageUrl,
+                FoundedYear = footballClub.FoundedYear,
+                City = footballClub.City,
+                Address = footballClub.Address,
+                LeagueId = footballClub.LeagueId,
+                StadiumId = footballClub.StadiumId
+
+            };
+
+            return model;
+        }
+
+        public async Task EditAsync(FootballClubViewModel model)
+        {
+            var footballClub = await repo.GetByIdAsync<FootballClub>(model.Id);
+
+            footballClub.Name = model.Name;
+            footballClub.Nickname = model.Nickname;
+            footballClub.Trophies = model.Trophies;
+            footballClub.LogoImageUrl = model.LogoImageUrl;
+            footballClub.FoundedYear = model.FoundedYear;
+            footballClub.Address = model.Address;
+            footballClub.City = model.City;
+            footballClub.LeagueId = model.LeagueId;
+            footballClub.StadiumId = model.StadiumId;
+
+            await repo.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<League>> GetLeaguesAsync()

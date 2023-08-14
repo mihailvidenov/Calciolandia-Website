@@ -45,6 +45,18 @@ namespace Calciolandia_Website.Core.Services
             }
         }
 
+        public async Task EditAsync(LeagueViewModel model)
+        {
+            var league = await repo.GetByIdAsync<League>(model.Id);
+            
+            league.Name = model.Name;
+            league.Country = model.Country;
+            league.LogoImageUrl = model.LogoImageUrl;
+
+            await repo.SaveChangesAsync();
+
+        }
+
         //public async Task EditAsync(LeagueViewModel model)
         //{
 
@@ -58,10 +70,27 @@ namespace Calciolandia_Website.Core.Services
             return entities
                 .Select(l => new LeagueViewModel()
                 {
+                    Id = l.Id,
                     Name = l.Name,
                     Country = l.Country,
                     LogoImageUrl = l.LogoImageUrl
                 });
+        }
+
+        public async Task<LeagueViewModel> GetForEditAsync(int id)
+        {
+            var league = await repo.GetByIdAsync<League>(id);
+
+            var model = new LeagueViewModel()
+            {
+                Id = league.Id,
+                Name = league.Name,
+                Country = league.Country,
+                LogoImageUrl = league.LogoImageUrl
+            };
+
+            return model;
+
         }
 
         //public async Task<LeagueViewModel> GetByIdAsync(int id)

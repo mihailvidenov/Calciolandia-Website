@@ -19,5 +19,9 @@ namespace Calciolandia_Website.Core.Contracts
         Task<IEnumerable<Stadium>> GetStadiumsAsync();
 
         Task<IEnumerable<League>> GetLeaguesAsync();
+
+        Task<FootballClubViewModel> GetForEditAsync(int id);
+
+        Task EditAsync(FootballClubViewModel model);
     }
 }
