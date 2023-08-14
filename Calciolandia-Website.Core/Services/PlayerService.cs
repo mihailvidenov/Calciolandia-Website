@@ -55,6 +55,8 @@ namespace Calciolandia_Website.Core.Services
             }
         }
 
+        
+
         public async Task<IEnumerable<PlayerViewModel>> GetAllAsync()
         {
             var entities = await repo.AllReadonly<Player>()
@@ -63,6 +65,7 @@ namespace Calciolandia_Website.Core.Services
 
             return entities.Select(e => new PlayerViewModel()
             {
+                Id = e.Id,
                 FirstName = e.FirstName,
                 LastName = e.LastName,
                 Age = e.Age,
@@ -83,6 +86,51 @@ namespace Calciolandia_Website.Core.Services
             return await repo.All<FootballClub>()
                 .Where(f => f.IsDeleted == false)
                 .ToListAsync();
+        }
+
+        public async Task<PlayerViewModel> GetForEditAsync(Guid id)
+        {
+            var player = await repo.GetByIdAsync<Player>(id);
+
+            var model = new PlayerViewModel()
+            {
+                Id = player.Id,
+                FirstName = player.FirstName,
+                LastName = player.LastName,
+                Nationality = player.Nationality,
+                Age = player.Age,
+                BirthDate = player.BirthDate,
+                ContractSignedDate = player.ContractSignedDate,
+                ContractExpiredDate = player.ContractExpiredDate,
+                Position = player.Position,
+                MarketValue = player.MarketValue,
+                Number = player.Number,
+                ImageUrl = player.ImageUrl,
+                FootballClubId = player.FootballClubId
+            };
+
+            return model;
+        }
+
+        public async Task EditAsync(PlayerViewModel model)
+        {
+            var player = await repo.GetByIdAsync<Player>(model.Id);
+
+            player.FirstName = model.FirstName;
+            player.LastName = model.LastName;
+            player.Age = model.Age;
+            player.Nationality = model.Nationality;
+            player.BirthDate = model.BirthDate;
+            player.ContractSignedDate = model.ContractSignedDate;
+            player.ContractExpiredDate = model.ContractExpiredDate;
+            player.Position = model.Position;
+            player.MarketValue = model.MarketValue;
+            player.Number = model.Number;
+            player.ImageUrl = model.ImageUrl;
+            player.FootballClubId = model.FootballClubId;
+
+            await repo.SaveChangesAsync();
+
         }
     }
 }
