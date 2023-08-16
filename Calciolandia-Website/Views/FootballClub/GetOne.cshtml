@@ -19,11 +19,13 @@
                 <h5 class="card-title text-center">@($"{president.FirstName} {president.LastName}")</h5>
 
             </div>
-            <div class="mb-3 text-center">
+            <div class="btn-group d-flex justify-content-center">
+            <div class="mb-3 text-center p-2">
                 <a asp-action="Edit" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-primary">Edit</a>
             </div>
-                <div class="mb-3 text-center">
+                <div class="mb-3 text-center p-2">
                     <a asp-action="Info" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-primary">Info</a>
+                </div>
                 </div>
         </div>
    
@@ -38,11 +40,13 @@
                 <h5 class="card-title text-center">@($"{manager.FirstName} {manager.LastName}")</h5>
 
             </div>
-            <div class="mb-3 text-center">
+            <div class="btn-group d-flex justify-content-center">
+            <div class="mb-3 text-center p-2">
                 <a asp-action="Edit" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-primary">Edit</a>
             </div>
-                <div class="mb-3 text-center">
+                <div class="mb-3 text-center p-2">
                     <a asp-action="Info" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-primary">Info</a>
+                </div>
                 </div>
             </div>
             
@@ -61,11 +65,13 @@
                         <h6 class="card-text">@player.Position</h6>
                        
                     </div>
-            <div class="mb-3">
+                    <div class="btn-group d-flex justify-content-center">
+            <div class="mb-3 text-center p-2">
                 <a asp-action="Edit" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-primary">Edit</a>
             </div>
-                    <div class="mb-3">
+                    <div class="mb-3 text-center p-2">
                         <a asp-action="Info" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-primary">Info</a>
+                    </div>
                     </div>
                 </div>
         

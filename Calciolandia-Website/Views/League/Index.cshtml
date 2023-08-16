@@ -4,25 +4,22 @@
     ViewBag.Title = "Italian leagues";
 }
 
-<div class="text-center row">
+<div class=" d-flex justify-content-around">
     @foreach (var league in Model)
     {
-        <div class="card col-4" style="width: 20rem;">
-            <img class="card-img-top" style="width: 18rem;"
-             src="@league.LogoImageUrl" alt="League Image">
-            <div class="card-body">
+        <div class="card w-25">
+            <img class="card-img-top" src="@league.LogoImageUrl" alt="Card image cap">
+            <div class="card-body ">
+                <h5 class="card-title text-center">@league.Name</h5>
 
-                <h5 class="card-title mt-1">@league.Name</h5>
-                @*<p class="mb-0">Country: @league.Country</p>*@
             </div>
-            @*<div class="mb-3">
+            <div class="btn-group d-flex justify-content-center">
+            <div class="mb-3 text-center p-2">
                 <a asp-action="Edit" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-primary">Edit</a>
-            </div>*@
-            <div class="mb-3">
-                <a asp-action="Edit" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-primary" >Edit</a>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-center p-2">
                 <a asp-action="Index" asp-area="" asp-controller="FootballClub"  class="btn btn-primary">Football Clubs</a>
+            </div>
             </div>
         </div>
     }
