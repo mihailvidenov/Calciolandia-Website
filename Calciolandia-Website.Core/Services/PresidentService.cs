@@ -5,6 +5,7 @@ using Calciolandia_Website.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -112,19 +113,19 @@ namespace Calciolandia_Website.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public async Task<PresidentViewModel> GetPresidentById(Guid id)
+        public async Task<PresidentInfoViewModel> GetPresidentById(Guid id)
         {
             var president = await repo.GetByIdAsync<President>(id);
 
-            var model = new PresidentViewModel()
+            var model = new PresidentInfoViewModel()
             {
                 FirstName = president.FirstName,
                 LastName = president.LastName,
                 Nationality = president.Nationality,
                 Age = president.Age,
-                BirthDate = president.BirthDate,
-                ImageUrl = president.ImageUrl,
-                FootballClubId = president.FootballClubId
+                BirthDate = president.BirthDate.ToString("dd/MM/yyyy",
+                  CultureInfo.InvariantCulture),
+                ImageUrl = president.ImageUrl
             };
 
             return model;

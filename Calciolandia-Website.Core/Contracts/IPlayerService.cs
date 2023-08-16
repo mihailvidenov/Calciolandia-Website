@@ -22,6 +22,6 @@ namespace Calciolandia_Website.Core.Contracts
 
         Task EditAsync(PlayerViewModel model);
 
-        Task<PlayerViewModel> GetPlayerById(Guid id);
+        Task<PlayerInfoViewModel> GetPlayerById(Guid id);
     } 
 }

@@ -1,0 +1,31 @@
+﻿@model ManagerInfoViewModel
+
+@{
+    ViewBag.Title = "";
+}
+
+<div class=" d-flex justify-content-around">
+        <div class="card w-25">
+            <img class="card-img-top" src="@Model.ImageUrl" alt="Card image cap">
+            <div class="card-body ">
+                <h5  class="card-title text-center">@(Model.FirstName + " " + Model.LastName)</h5>
+            <h6 class="card-title text-center">Age: @Model.Age</h6>
+            <h6 class="card-title text-center">Nationality: @Model.Nationality</h6>
+            <h6 class="card-title text-center">Birthdate: @Model.BirthDate</h6>
+            <h6 class="card-title text-center">Contract signed date: @Model.ContractSignedDate</h6>
+            <h6 class="card-title text-center">Contract expired date: @Model.ContractExpiredDate</h6>
+            </div>
+           @* <div class="btn-group d-flex justify-content-center">
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Edit" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Index" asp-area="" asp-controller="FootballClub" class="btn btn-success">Football Clubs</a>
+                </div>
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Delete" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-danger">Delete</a>
+                </div>
+            </div>*@
+        </div>
+</div>
+

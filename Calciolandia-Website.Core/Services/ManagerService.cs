@@ -5,6 +5,7 @@ using Calciolandia_Website.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -123,21 +124,23 @@ namespace Calciolandia_Website.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public async Task<ManagerViewModel> GetManagerById(Guid id)
+        public async Task<ManagerInfoViewModel> GetManagerById(Guid id)
         {
             var manager = await repo.GetByIdAsync<Manager>(id);
 
-            var model = new ManagerViewModel()
+            var model = new ManagerInfoViewModel()
             { 
                 FirstName = manager.FirstName,
                 LastName = manager.LastName,
                 Nationality = manager.Nationality,
                 Age = manager.Age,
-                BirthDate = manager.BirthDate,
-                ContractSignedDate = manager.ContractSignedDate,
-                ContractExpiredDate = manager.ContractExpiredDate,
-                ImageUrl = manager.ImageUrl,
-                FootballClubId = manager.FootballClubId
+                BirthDate = manager.BirthDate.ToString("dd/MM/yyyy",
+                  CultureInfo.InvariantCulture),
+                ContractSignedDate = manager.ContractSignedDate.ToString("dd/MM/yyyy",
+                  CultureInfo.InvariantCulture),
+                ContractExpiredDate = manager.ContractExpiredDate.ToString("dd/MM/yyyy",
+                  CultureInfo.InvariantCulture),
+                ImageUrl = manager.ImageUrl
             };
 
             return model;

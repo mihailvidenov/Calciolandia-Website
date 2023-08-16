@@ -24,7 +24,10 @@
                 <a asp-action="Edit" asp-area="" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-primary">Edit</a>
             </div>
                 <div class="mb-3 text-center p-2">
-                    <a asp-action="Info" asp-area="" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-primary">Info</a>
+                    <a asp-action="Info" asp-area="" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-success">Info</a>
+                </div>
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Delete" asp-area="" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-danger">Delete</a>
                 </div>
                 </div>
         </div>
@@ -47,7 +50,10 @@
                 <a asp-action="Edit" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-primary">Edit</a>
             </div>
                 <div class="mb-3 text-center p-2">
-                    <a asp-action="Info" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-primary">Info</a>
+                    <a asp-action="Info" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-success">Info</a>
+                </div>
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Delete" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-danger">Delete</a>
                 </div>
                 </div>
         </div>
@@ -68,7 +74,10 @@
                 <a asp-action="Edit" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-primary">Edit</a>
             </div>
                 <div class="mb-3 text-center p-2">
-                    <a asp-action="Info" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-primary">Info</a>
+                    <a asp-action="Info" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-success">Info</a>
+                </div>
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Delete" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-danger">Delete</a>
                 </div>
                 </div>
             </div>
@@ -76,25 +85,29 @@
     }
 </div>
 <div class="text-center row ">
-    <h2 class="text-light">Players: </h2>
+    <h2 class="text-light">Players</h2>
     <div>
         <div class="card-group">
     @foreach (var player in Model.Players)
     {
-                <div class="card ml-5 mr-5">
+                <div class="card p-2">
+                    <h4 class="card-title text-center">@player.Number</h4>
                     <img class="card-img-top" src="@player.ImageUrl" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@($"{player.FirstName} {player.LastName}")</h5>
                         <h6 class="card-text">@player.Position</h6>
                        
                     </div>
-                    <div class="btn-group d-flex justify-content-center">
+                    <div class="btn-group d-flex justify-content-center p-4">
             <div class="mb-3 text-center p-2">
                 <a asp-action="Edit" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-primary">Edit</a>
             </div>
                     <div class="mb-3 text-center p-2">
-                        <a asp-action="Info" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-primary">Info</a>
+                        <a asp-action="Info" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-success">Info</a>
                     </div>
+                        <div class="mb-3 text-center p-2">
+                            <a asp-action="Delete" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-danger">Delete</a>
+                        </div>
                     </div>
                 </div>
         

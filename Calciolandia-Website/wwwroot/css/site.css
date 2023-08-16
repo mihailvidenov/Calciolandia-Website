@@ -19,6 +19,12 @@ nav{
     padding-right: 5px;
 }
 
+.card{
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+
 body {
     /*margin-bottom: 60px;*/
     /*background-image: url('C:\Users\Home\source\repos\Calciolandia-Website\Calciolandia-Website\wwwroot');*/
