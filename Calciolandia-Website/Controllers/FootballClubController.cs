@@ -102,6 +102,7 @@ namespace Calciolandia_Website.Controllers
             model.Players = await footballClubService.GetPlayersByFootballClub(id);
             model.Presidents = await footballClubService.GetPresidentByFootballClub(id);
             model.Managers = await footballClubService.GetManagersByFootballClub(id);
+            model.Stadiums = await footballClubService.GetStadiumById(id);
 
             return View(model);
         }

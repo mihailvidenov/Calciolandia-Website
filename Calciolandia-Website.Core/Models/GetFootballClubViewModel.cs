@@ -37,11 +37,9 @@ namespace Calciolandia_Website.Core.Models
         [Required]
         public string Address { get; set; } = null!;
 
-        
 
-        public int? StadiumId { get; set; }
 
-        public Stadium Stadium { get; set; }
+        public IEnumerable<Stadium> Stadiums { get; set; } = new List<Stadium>();
 
         public IEnumerable<Player> Players { get; set; } = new List<Player>();
 

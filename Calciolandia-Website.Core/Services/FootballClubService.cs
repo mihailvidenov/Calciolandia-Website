@@ -137,7 +137,7 @@ namespace Calciolandia_Website.Core.Services
                 Trophies = footballClub.Trophies,
                 Address = footballClub.Address,
                 City = footballClub.City,
-                StadiumId = footballClub.StadiumId
+               
             };
 
             return model;
@@ -162,6 +162,13 @@ namespace Calciolandia_Website.Core.Services
         {
             return await repo.AllReadonly<President>()
                 .Where(p => p.IsDeleted == false && p.FootballClubId == id)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Stadium>> GetStadiumById(int id)
+        {
+            return await repo.AllReadonly<Stadium>()
+                .Where(s => s.IsDeleted == false && s.FootballClubs.Any((fc => fc.Id == id)))
                 .ToListAsync();
         }
     }

@@ -31,5 +31,7 @@ namespace Calciolandia_Website.Core.Contracts
         Task<IEnumerable<Manager>> GetManagersByFootballClub(int id);
 
         Task<IEnumerable<President>> GetPresidentByFootballClub(int id);
+
+        Task<IEnumerable<Stadium>> GetStadiumById(int id);
     }
 }
