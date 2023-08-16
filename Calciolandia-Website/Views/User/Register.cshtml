@@ -1,11 +1,85 @@
 ﻿@model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
+
+<section class="vh-150 bg-image"
+         style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+                            <form>
+
+                                <div class="form-outline mb-4">
+                                    <label asp-for="FirstName" class="form-label">Your First Name</label>
+                                    <input asp-for="FirstName" type="text"  class="form-control form-control-lg" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label asp-for="LastName" class="form-label">Your Last Name</label>
+                                    <input asp-for="LastName" type="text" class="form-control form-control-lg" />
+                                    
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label asp-for="Email" class="form-label" for="form3Example3cg">Your Email</label>
+                                    <input asp-for="Email" type="email"  class="form-control form-control-lg" />
+                                    
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label asp-for="Password" class="form-label">Password</label>
+                                    <input asp-for="Password" type="password"  class="form-control form-control-lg" />
+                                    
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label asp-for="PasswordRepeat" class="form-label">Repeat your password</label>
+                                    <input asp-for="PasswordRepeat" type="password"  class="form-control form-control-lg" />
+                                    
+                                    <span asp-validation-for="PasswordRepeat" class="text-danger"></span>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label asp-for="@Model.FootballClubId" class="form-label">Choose your favourite football club</label>
+                                    <select asp-for="@Model.FootballClubId" class="form-control">
+                                        @foreach (var footballClub in Model.FootballClubs)
+                                        {
+                                            <option value="@footballClub.Id">@footballClub.Name</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="FootballClubId" class="text-danger"></span>
+                                </div>
+                                
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button"
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                                        Register
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<div class="row">
     <div class="col-md-4">
         <form id="registerForm" method="post">
             <h2>Create a new account.</h2>
@@ -41,9 +115,19 @@
                 <label asp-for="PasswordRepeat"></label>
                 <span asp-validation-for="PasswordRepeat" class="text-danger"></span>
             </div>
+            <div class="mb-3">
+                <label asp-for="@Model.FootballClubId" class="form-label">Choose your favourite football club</label>
+                <select asp-for="@Model.FootballClubId" class="form-control">
+                    @foreach (var footballClub in Model.FootballClubs)
+                    {
+                        <option value="@footballClub.Id">@footballClub.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="FootballClubId" class="text-danger"></span>
+            </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
-    </div>
+    </div>*@
     @*<div class="col-md-6 col-md-offset-2">
     <section>
     <h3>Use another service to register.</h3>

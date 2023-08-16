@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calciolandia_Website.Core.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -34,5 +35,9 @@ namespace Calciolandia_Website.Core.Models
 		[Required]
 		[StringLength(20, MinimumLength = 2)]
 		public string LastName { get; set; } = null!;
+
+		public int? FootballClubId { get; set; }
+
+		public IEnumerable<FootballClub> FootballClubs { get; set; } = new List<FootballClub>();
 	}
 }

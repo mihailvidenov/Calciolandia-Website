@@ -1,4 +1,6 @@
-﻿using Calciolandia_Website.Core.Data.Models;
+﻿using Calciolandia_Website.Core.Constants;
+using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,19 +11,27 @@ namespace Calciolandia_Website.Controllers
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole<Guid>> roleManager;
+        private readonly IManagerService managerService;
 
         public UserController(
             SignInManager<ApplicationUser> _signInManager,
-			UserManager<ApplicationUser> _userManager)
+			UserManager<ApplicationUser> _userManager,
+            RoleManager<IdentityRole<Guid>> _roleManager,
+            IManagerService _managerService)
         {
             signInManager = _signInManager;
             userManager = _userManager;
+            roleManager = _roleManager;
+            managerService = _managerService;
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
             var model = new RegisterViewModel();
+
+            model.FootballClubs = await managerService.GetFootballClubsAsync();
 
             return View(model);
         }
@@ -40,6 +50,7 @@ namespace Calciolandia_Website.Controllers
                 UserName = model.UserName,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                FootballClubId = model.FootballClubId,
                 EmailConfirmed = true
             };
 
@@ -105,6 +116,24 @@ namespace Calciolandia_Website.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> CreateRoles()
+        {
+            await roleManager.CreateAsync(new IdentityRole<Guid>(RoleConstants.Admin));
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> AddUsersToRoles()
+        {
+            string email = "m_fvidenov@abv.bg";
+
+            var user = await userManager.FindByEmailAsync(email);
+
+            await userManager.AddToRoleAsync(user, RoleConstants.Admin);
 
             return RedirectToAction("Index", "Home");
         }
