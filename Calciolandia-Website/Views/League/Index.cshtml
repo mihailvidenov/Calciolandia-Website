@@ -13,10 +13,16 @@
             <div class="card-body">
 
                 <h5 class="card-title mt-1">@league.Name</h5>
-                <p class="mb-0">Country: @league.Country</p>
+                @*<p class="mb-0">Country: @league.Country</p>*@
             </div>
+            @*<div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-primary">Edit</a>
+            </div>*@
             <div class="mb-3">
                 <a asp-action="Edit" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-primary" >Edit</a>
+            </div>
+            <div class="mb-3">
+                <a asp-action="Index" asp-area="" asp-controller="FootballClub"  class="btn btn-primary">Football Clubs</a>
             </div>
         </div>
     }

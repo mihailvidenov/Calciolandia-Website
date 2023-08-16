@@ -1,5 +1,6 @@
 ﻿using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Models;
+using Calciolandia_Website.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calciolandia_Website.Controllers
@@ -89,6 +90,14 @@ namespace Calciolandia_Website.Controllers
 
                 return View(model);
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Info(Guid id)
+        {
+            var model = await presidentService.GetPresidentById(id);
+
+            return View(model);
         }
     }
 }

@@ -98,5 +98,21 @@ namespace Calciolandia_Website.Core.Services
 
             await repo.SaveChangesAsync();
         }
+
+        public async Task<StadiumViewModel> GetStadiumById(int id)
+        {
+            var stadium = await repo.GetByIdAsync<Stadium>(id);
+
+            var model = new StadiumViewModel()
+            {
+                Name = stadium.Name,
+                Capacity = stadium.Capacity,
+                ImageUrl = stadium.ImageUrl,
+                Address = stadium.Address,
+                City = stadium.City
+            };
+
+            return model;
+        }
     }
 }

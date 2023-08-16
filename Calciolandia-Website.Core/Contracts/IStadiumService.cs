@@ -18,5 +18,7 @@ namespace Calciolandia_Website.Core.Contracts
         Task<StadiumViewModel> GetForEditAsync(int id);
 
         Task EditAsync(StadiumViewModel model);
+
+        Task<StadiumViewModel> GetStadiumById(int id);
     }
 }

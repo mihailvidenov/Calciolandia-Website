@@ -1,0 +1,149 @@
+﻿@model GetFootballClubViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+<div class="d-flex justify-content-center">
+    <img  style="width: 4rem;" src="@Model.LogoImageUrl" alt="Football Club Image">
+<h2 class="text-center">@ViewBag.Title</h2>
+</div>
+<hr />
+
+<div class="d-flex justify-content-around">
+    @foreach (var president in Model.Presidents)
+    {
+    <div class="text-center row">
+        <div class="card col-4" style="width: 20rem;">
+            <h2>President</h2>
+            <img class="card-img-top" style="width: 18rem;"
+             src="@president.ImageUrl" alt="President Image">
+            <div class="card-body">
+                <h5 class="card-title mt-1">First name: @president.FirstName</h5>
+                @*<p class="card-title mt-1">Middle name: @manager.MiddleName</p>*@
+                <h5 class="card-title mt-1">Last name: @president.LastName</h5>
+                <p class="mb-0">Age: @president.Age</p>
+
+            </div>
+            <div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="President" asp-route-id="@president.Id" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+    }
+
+    @foreach (var manager in Model.Managers)
+    {
+        <div class="text-center row">
+        <div class="card col-4" style="width: 20rem;">
+            <h2>Manager</h2>
+            <img class="card-img-top" style="width: 18rem;"
+             src="@manager.ImageUrl" alt="Manager Image">
+            <div class="card-body">
+                <h5 class="card-title mt-1">First name: @manager.FirstName</h5>
+                @*<p class="card-title mt-1">Middle name: @manager.MiddleName</p>*@
+                <h5 class="card-title mt-1">Last name: @manager.LastName</h5>
+                <p class="mb-0">Age: @manager.Age</p>
+                
+            </div>
+            <div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-primary">Edit</a>
+            </div>
+            </div>
+            </div>
+    }
+</div>
+<div class="text-center row ">
+    <h2>Players: </h2>
+    <div>
+        <div class="justify-content-around">
+    @foreach (var player in Model.Players)
+    {
+        <div class="card col-4" style="width: 20rem;">
+            <h2>@player.Number</h2>
+            <img class="card-img-top" style="width: 18rem;"
+             src="@player.ImageUrl" alt="Player Image">
+            <div class="card-body">
+                <h5 class="card-title mt-1">First name: @player.FirstName</h5>
+                @*<p class="card-title mt-1">Middle name: @manager.MiddleName</p>*@
+                <h5 class="card-title mt-1">Last name: @player.LastName</h5>
+                <p class="mb-0">Age: @player.Age</p>
+
+            </div>
+            <div class="mb-3">
+                <a asp-action="Edit" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        @*<form method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label">Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Nickname" class="form-label">Nickname</label>
+                <input asp-for="@Model.Nickname" class="form-control" aria-required="true" />
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Trophies" class="form-label">Serie A Trophies</label>
+                <input asp-for="@Model.Trophies" class="form-control" aria-required="true" />
+                <span asp-validation-for="Trophies" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.FoundedYear" class="form-label">Founded Date</label>
+                <input asp-for="@Model.FoundedYear" class="form-control" aria-required="true" />
+                <span asp-validation-for="FoundedYear" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LogoImageUrl" class="form-label">Logo Image URL</label>
+                <input asp-for="@Model.LogoImageUrl" class="form-control" aria-required="true" />
+                <span asp-validation-for="LogoImageUrl" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Address" class="form-label">Address</label>
+                <input asp-for="@Model.Address" class="form-control" value="" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.City" class="form-label">City</label>
+                <input asp-for="@Model.City" class="form-control" value="" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LeagueId" class="form-label">League</label>
+                <select asp-for="@Model.LeagueId" class="form-control">
+                    @foreach (var league in Model.Leagues)
+                    {
+                        <option value="@league.Id">@league.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="LeagueId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.StadiumId" class="form-label">Stadium</label>
+                <select asp-for="@Model.StadiumId" class="form-control">
+                    @foreach (var stadium in Model.Stadiums)
+                    {
+                        <option value="@stadium.Id">@stadium.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="StadiumId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </form>*@
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -111,5 +111,23 @@ namespace Calciolandia_Website.Core.Services
 
             await repo.SaveChangesAsync();
         }
+
+        public async Task<PresidentViewModel> GetPresidentById(Guid id)
+        {
+            var president = await repo.GetByIdAsync<President>(id);
+
+            var model = new PresidentViewModel()
+            {
+                FirstName = president.FirstName,
+                LastName = president.LastName,
+                Nationality = president.Nationality,
+                Age = president.Age,
+                BirthDate = president.BirthDate,
+                ImageUrl = president.ImageUrl,
+                FootballClubId = president.FootballClubId
+            };
+
+            return model;
+        }
     }
 }

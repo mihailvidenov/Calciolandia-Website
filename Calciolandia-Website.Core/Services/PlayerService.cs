@@ -132,5 +132,30 @@ namespace Calciolandia_Website.Core.Services
             await repo.SaveChangesAsync();
 
         }
+
+        public async Task<PlayerViewModel> GetPlayerById(Guid id)
+        {
+            var player = await repo.GetByIdAsync<Player>(id);
+
+            var model = new PlayerViewModel() 
+            { 
+                Id = player.Id,
+                FirstName = player.FirstName,
+                LastName = player.LastName,
+                Age = player.Age,
+                Nationality = player.Nationality,
+                BirthDate = player.BirthDate,
+                ContractSignedDate = player.ContractSignedDate,
+                ContractExpiredDate = player.ContractExpiredDate,
+                Position = player.Position,
+                MarketValue = player.MarketValue,
+                ImageUrl = player.ImageUrl,
+                Number = player.Number,
+                FootballClubId = player.FootballClubId
+            };
+
+            return model;
+
+        }
     }
 }

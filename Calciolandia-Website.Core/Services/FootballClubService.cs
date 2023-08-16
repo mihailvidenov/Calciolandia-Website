@@ -122,5 +122,47 @@ namespace Calciolandia_Website.Core.Services
         {
             return await repo.All<Stadium>().ToListAsync();
         }
+
+        public async Task<GetFootballClubViewModel> GetFootballClubAsync(int id)
+        {
+            var footballClub = await repo.GetByIdAsync<FootballClub>(id);
+
+            var model = new GetFootballClubViewModel()
+            { 
+                
+                Name = footballClub.Name,
+                Nickname = footballClub.Nickname,
+                LogoImageUrl = footballClub.LogoImageUrl,
+                FoundedYear = footballClub.FoundedYear,
+                Trophies = footballClub.Trophies,
+                Address = footballClub.Address,
+                City = footballClub.City,
+                StadiumId = footballClub.StadiumId
+            };
+
+            return model;
+
+        }
+
+        public async Task<IEnumerable<Player>> GetPlayersByFootballClub(int id)
+        {
+            return await repo.AllReadonly<Player>()
+                .Where(p => p.IsDeleted == false && p.FootballClubId == id)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Manager>> GetManagersByFootballClub(int id)
+        {
+            return await repo.AllReadonly<Manager>()
+                .Where(m => m.IsDeleted == false && m.FootballClubId == id)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<President>> GetPresidentByFootballClub(int id)
+        {
+            return await repo.AllReadonly<President>()
+                .Where(p => p.IsDeleted == false && p.FootballClubId == id)
+                .ToListAsync();
+        }
     }
 }

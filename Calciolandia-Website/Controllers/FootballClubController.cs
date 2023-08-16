@@ -93,5 +93,17 @@ namespace Calciolandia_Website.Controllers
                 return View(model);
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetOne(int id)
+        {
+            var model = await footballClubService.GetFootballClubAsync(id);
+
+            model.Players = await footballClubService.GetPlayersByFootballClub(id);
+            model.Presidents = await footballClubService.GetPresidentByFootballClub(id);
+            model.Managers = await footballClubService.GetManagersByFootballClub(id);
+
+            return View(model);
+        }
     }
 }

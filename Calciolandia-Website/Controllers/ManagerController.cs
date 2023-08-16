@@ -88,6 +88,14 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Info(Guid id)
+        {
+            var model = await managerService.GetManagerById(id);
+
+            return View(model);
+        }
+
        
     }
 }
