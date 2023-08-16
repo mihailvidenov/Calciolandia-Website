@@ -2,6 +2,7 @@
 using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,7 @@ namespace Calciolandia_Website.Controllers
             managerService = _managerService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Register()
         {
@@ -36,6 +38,7 @@ namespace Calciolandia_Website.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -72,6 +75,7 @@ namespace Calciolandia_Website.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login(string? returnUrl = null)
         {
@@ -83,6 +87,7 @@ namespace Calciolandia_Website.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {

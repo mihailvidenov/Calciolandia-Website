@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Calciolandia_Website.Controllers
 {
-    public class FootballClubController : Controller
+    public class FootballClubController : BaseController
     {
         private readonly IFootballClubService footballClubService;
 

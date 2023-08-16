@@ -1,4 +1,4 @@
-﻿@model ManagerInfoViewModel
+﻿@model StadiumViewModel
 
 @{
     ViewBag.Title = "";
@@ -8,12 +8,10 @@
     <div class="card w-25">
         <img class="card-img-top" src="@Model.ImageUrl" alt="Card image cap">
         <div class="card-body ">
-            <h5 class="card-title text-center">@(Model.FirstName + " " + Model.LastName)</h5>
-            <h6 class="card-title text-center">Age: @Model.Age</h6>
-            <h6 class="card-title text-center">Nationality: @Model.Nationality</h6>
-            <h6 class="card-title text-center">Birthdate: @Model.BirthDate</h6>
-            <h6 class="card-title text-center">Contract signed date: @Model.ContractSignedDate</h6>
-            <h6 class="card-title text-center">Contract expired date: @Model.ContractExpiredDate</h6>
+            <h5 class="card-title text-center">@Model.Name</h5>
+            <h6 class="card-title text-center">Capacity: @Model.Capacity</h6>
+            <h6 class="card-title text-center">City: @Model.City</h6>
+            <h6 class="card-title text-center">Address: @Model.Address</h6>
         </div>
         @* <div class="btn-group d-flex justify-content-center">
         <div class="mb-3 text-center p-2">

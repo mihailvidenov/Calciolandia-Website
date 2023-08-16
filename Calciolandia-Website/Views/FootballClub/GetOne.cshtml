@@ -87,7 +87,7 @@
 <div class="text-center row ">
     <h2 class="text-light">Players</h2>
     <div>
-        <div class="card-group">
+        <div class="card-group gap-2">
     @foreach (var player in Model.Players)
     {
                 <div class="card p-2">
@@ -98,15 +98,15 @@
                         <h6 class="card-text">@player.Position</h6>
                        
                     </div>
-                    <div class="btn-group d-flex justify-content-center p-4">
-            <div class="mb-3 text-center p-2">
-                <a asp-action="Edit" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-primary">Edit</a>
+                    <div class="btn-group d-flex  justify-content-center gap-2">
+            <div class="mb-3 align-content-center  text-center">
+                            <a asp-action="Edit" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn  btn-primary ">Edit</a>
             </div>
-                    <div class="mb-3 text-center p-2">
-                        <a asp-action="Info" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-success">Info</a>
+                    <div class="mb-3 text-center">
+                        <a asp-action="Info" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn  btn-success">Info</a>
                     </div>
-                        <div class="mb-3 text-center p-2">
-                            <a asp-action="Delete" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn btn-danger">Delete</a>
+                        <div class="mb-3 text-center">
+                            <a asp-action="Delete" asp-area="" asp-controller="Player" asp-route-id="@player.Id" class="btn  btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>

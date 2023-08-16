@@ -23,9 +23,12 @@
                             <li class="nav-item">
                         <a class="nav-item nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-item nav-link active" asp-area="" asp-controller="League" asp-action="Index">Italian leagues</a>
-                            </li>
+                            @if (User?.Identity?.IsAuthenticated ?? false)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-item nav-link active" asp-area="" asp-controller="League" asp-action="Index">Leagues</a>
+                                </li>
+                            }
                             <li class="nav-item">
                         <a class="nav-item nav-link active" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>

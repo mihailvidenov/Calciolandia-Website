@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Calciolandia_Website.Controllers
 {
-    public class ManagerController : Controller
+    public class ManagerController : BaseController
     {
         private readonly IManagerService managerService;
 
