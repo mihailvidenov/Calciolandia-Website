@@ -26,15 +26,21 @@
                     
                     <td>
                         <div class="btn-group d-flex justify-content-center">
+                            @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                            {
                             <div class="mb-3 text-center p-2">
                             <a asp-action="Edit" asp-area="" asp-controller="FootballClub" asp-route-id="@footballClub.Id" class="btn btn-primary">Edit</a>
                         </div>
+                            }
                         <div class="mb-3 text-center p-2">
                             <a asp-action="GetOne" asp-area="" asp-controller="FootballClub" asp-route-id="@footballClub.Id" class="btn btn-success">Info</a>
                         </div>
+                            @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                            {
                             <div class="mb-3 text-center p-2">
                             <a asp-action="Delete" asp-area="" asp-controller="FootballClub" asp-route-id="@footballClub.Id" class="btn btn-danger">Delete</a>
                         </div>
+                            }
                         </div>
                     </td>
        </tr>
