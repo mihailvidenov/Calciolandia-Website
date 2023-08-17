@@ -17,12 +17,12 @@ namespace Calciolandia_Website.Controllers
             presidentService = _presidentService;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var model = await presidentService.GetAllAsync();
+        //public async Task<IActionResult> Index()
+        //{
+        //    var model = await presidentService.GetAllAsync();
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         [HttpGet]
         [Authorize(Roles = RoleConstants.Admin)]
