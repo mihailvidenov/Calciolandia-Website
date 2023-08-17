@@ -125,6 +125,7 @@ namespace Calciolandia_Website.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> CreateRoles()
         {
             await roleManager.CreateAsync(new IdentityRole<Guid>(RoleConstants.Admin));
@@ -132,6 +133,7 @@ namespace Calciolandia_Website.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> AddUsersToRoles()
         {
             string email = "m_fvidenov@abv.bg";

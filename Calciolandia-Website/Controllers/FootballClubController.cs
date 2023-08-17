@@ -1,5 +1,7 @@
-﻿using Calciolandia_Website.Core.Contracts;
+﻿using Calciolandia_Website.Core.Constants;
+using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -21,6 +23,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add()
         {
             var model = new FootballClubViewModel()
@@ -33,6 +36,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add(FootballClubViewModel model)
         {
             if (!ModelState.IsValid)
@@ -54,7 +58,7 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
-
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Delete(int id)
         {
             await footballClubService.DeleteAsync(id);
@@ -63,6 +67,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(int id)
         {
             var model = await footballClubService.GetForEditAsync(id);
@@ -74,6 +79,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(FootballClubViewModel model)
         {
             if (!ModelState.IsValid)

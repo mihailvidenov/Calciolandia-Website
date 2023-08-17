@@ -1,7 +1,10 @@
-﻿using Calciolandia_Website.Core.Contracts;
+﻿using Calciolandia_Website.Core.Constants;
+using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Models;
 using Calciolandia_Website.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Calciolandia_Website.Controllers
 {
@@ -22,6 +25,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = RoleConstants.Admin)]
         public IActionResult Add()
         {
             var model = new LeagueViewModel();
@@ -29,6 +33,8 @@ namespace Calciolandia_Website.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add(LeagueViewModel model)
         {
             if (!ModelState.IsValid)
@@ -50,6 +56,8 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
+        [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Delete(int id)
         {
             await leagueService.DeleteAsync(id);
@@ -59,6 +67,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(int id)
         {
             var model = await leagueService.GetForEditAsync(id);
@@ -67,6 +76,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(LeagueViewModel model)
         {
             if (!ModelState.IsValid)

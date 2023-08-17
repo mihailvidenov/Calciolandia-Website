@@ -1,7 +1,10 @@
-﻿using Calciolandia_Website.Core.Contracts;
+﻿using Calciolandia_Website.Core.Constants;
+using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Models;
 using Calciolandia_Website.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Calciolandia_Website.Controllers
 {
@@ -22,6 +25,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add()
         {
             var model = new PlayerViewModel()
@@ -33,6 +37,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add(PlayerViewModel model)
         {
             if (!ModelState.IsValid)
@@ -53,6 +58,8 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
+        [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Delete(Guid id)
         {
             await playerService.DeleteAsync(id);
@@ -61,6 +68,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(Guid id)
         {
             var model = await playerService.GetForEditAsync(id);
@@ -71,6 +79,7 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(PlayerViewModel model)
         {
             if (!ModelState.IsValid)
