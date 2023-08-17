@@ -19,6 +19,10 @@ nav{
     padding-right: 5px;
 }
 
+.mytext{
+    line-height: 4vh;
+}
+
 /*.card{
     margin-right: 1%;
     margin-left: 1%;

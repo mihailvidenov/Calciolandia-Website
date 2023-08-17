@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Calciolandia-Website.Core\Calciolandia-Website.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
