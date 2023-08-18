@@ -10,7 +10,7 @@ namespace Calciolandia_Website.Core.Contracts
 {
     public interface IFootballClubService
     {
-        Task<IEnumerable<FootballClubViewModel>> GetAllAsync();
+        Task<IEnumerable<FootballClubViewModel>> GetAllAsync(int id);
 
         Task AddAsync(FootballClubViewModel model);
 

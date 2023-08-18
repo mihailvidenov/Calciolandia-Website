@@ -21,11 +21,11 @@
             </div>
                 }
             <div class="mb-3 text-center p-2">
-                <a asp-action="Index" asp-area="" asp-controller="FootballClub"  class="btn btn-success">Football Clubs</a>
+                <a asp-action="Index" asp-area="" asp-controller="FootballClub" asp-route-id="@league.Id"  class="btn btn-success">Football Clubs</a>
             </div>
                 @if (User?.IsInRole(RoleConstants.Admin) ?? false)
                 {
-                    <div class="mb-3 text-center p-2">
+                    <div class="mb-3 text-center p-2" onclick="myFunction()">
                         <a asp-action="Delete" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-danger">Delete</a>
                 </div>
                 }
@@ -33,3 +33,16 @@
         </div>
     }
 </div>
+
+
+@section Scripts{
+    <script>
+        function myFunction() {
+            if (confirm('Are you sure you want to delete this?')) 
+            {return true;}
+            else 
+            { event.stopPropagation();
+                event.preventDefault(); };
+        }
+    </script>
+}

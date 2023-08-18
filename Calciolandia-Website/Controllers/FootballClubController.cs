@@ -15,9 +15,9 @@ namespace Calciolandia_Website.Controllers
         {
             footballClubService = _footballClubService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-            var model = await footballClubService.GetAllAsync();
+            var model = await footballClubService.GetAllAsync(id);
 
             return View(model);
         }

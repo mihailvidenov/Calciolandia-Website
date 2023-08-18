@@ -53,10 +53,10 @@ namespace Calciolandia_Website.Core.Services
 
        
 
-        public async Task<IEnumerable<FootballClubViewModel>> GetAllAsync()
+        public async Task<IEnumerable<FootballClubViewModel>> GetAllAsync(int id)
         {
             var entities = await repo.AllReadonly<FootballClub>()
-                .Where(f => f.IsDeleted == false).ToListAsync();
+                .Where(f => f.IsDeleted == false && f.LeagueId == id).ToListAsync();
 
             return entities
                 .Select(e => new FootballClubViewModel()

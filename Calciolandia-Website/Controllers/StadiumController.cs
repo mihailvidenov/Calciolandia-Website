@@ -54,7 +54,6 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
-        [HttpPost]
         [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Delete(int id)
         {
