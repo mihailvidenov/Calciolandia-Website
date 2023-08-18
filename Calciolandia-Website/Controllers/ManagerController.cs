@@ -47,7 +47,7 @@ namespace Calciolandia_Website.Controllers
             try
             {
                 await managerService.AddAsync(model);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {
@@ -62,7 +62,7 @@ namespace Calciolandia_Website.Controllers
         {
            await managerService.DeleteAsync(id);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -88,7 +88,7 @@ namespace Calciolandia_Website.Controllers
             try
             {
                 await managerService.EditAsync(model);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {

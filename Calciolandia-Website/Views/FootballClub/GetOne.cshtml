@@ -105,9 +105,9 @@
 <div class="text-center row ">
     <h2 class="text-light">Players</h2>
     <div>
-        <div class="card-group gap-2">
-    @foreach (var player in Model.Players)
-    {
+        <div class="grid-container text-center">
+            @foreach (var player in @Model.Players)
+            {
                 <div class="card p-2">
                     <h4 class="card-title text-center">@player.Number</h4>
                     <img class="card-img-top" src="@player.ImageUrl" alt="Card image cap">
