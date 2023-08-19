@@ -14,6 +14,10 @@ html {
     
 }
 
+.stadium-card{
+    width: 25rem;
+}
+
 /*.my-card {
     background-color: dodgerblue;*/ /* For browsers that do not support gradients */
     /*background-image: linear-gradient(to right, green,green,red, red, white, white);
