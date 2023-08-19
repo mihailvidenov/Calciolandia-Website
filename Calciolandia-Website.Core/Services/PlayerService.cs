@@ -25,6 +25,7 @@ namespace Calciolandia_Website.Core.Services
         {
             var player = new Player()
             {
+               
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Age = model.Age,

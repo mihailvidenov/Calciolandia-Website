@@ -88,7 +88,7 @@ namespace Calciolandia_Website.Controllers
             try
             {
                 await managerService.EditAsync(model);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Info", "Manager", new { id = model.Id });
             }
             catch (Exception)
             {

@@ -90,7 +90,7 @@ namespace Calciolandia_Website.Controllers
             try
             {
                 await footballClubService.EditAsync(model);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "FootballClub", new {id = model.LeagueId});
             }
             catch (Exception)
             {

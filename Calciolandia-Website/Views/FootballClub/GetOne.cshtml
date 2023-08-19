@@ -9,6 +9,18 @@
 </div>
 <hr />
 
+<div class="d-flex justify-content-center">
+<div class="my-card card mb-5 text-warning">
+            <div class="card-body ">
+        <h5 class="card-title text-center">Nickname - <i>@Model.Nickname</i></h5>
+        <h5 class="card-title text-center">Serie A Trophies - <i>@Model.Trophies</i></h5>
+        <h5 class="card-title text-center">Founded Year - <i>@Model.FoundedYear</i></h5>
+        <h5 class="card-title text-center">City - <i>@Model.City</i></h5>
+        <h5 class="card-title text-center">Address - <i>@Model.Address</i></h5>
+              </div>
+ </div>
+ </div>
+
 <div class="d-flex justify-content-center mb-5">
     @foreach (var stadium in Model.Stadiums)
     {
