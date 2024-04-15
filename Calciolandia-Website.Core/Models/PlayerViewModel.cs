@@ -50,7 +50,8 @@ namespace Calciolandia_Website.Core.Models
         public string Position { get; set; } = null!;
 
         [Required]
-        public decimal MarketValue { get; set; }
+        [StringLength(20)]
+        public string MarketValue { get; set; } = null!;
 
         public string? ImageUrl { get; set; }
 

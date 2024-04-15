@@ -13,7 +13,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<League> builder)
         {
-            throw new NotImplementedException();
+            builder.HasData(CreateLeagues());
         }
 
 
@@ -26,9 +26,33 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Id = 1,
                 Name = "Serie A",
                 Country = "Italy",
-                LogoImageUrl = "https://tmssl.akamaized.net/images/logo/header/it1.png?lm=1656073460",
-                IsDeleted = false
+                LogoImageUrl = "https://tmssl.akamaized.net/images/logo/header/it1.png?lm=1656073460"
             };
+
+            leagues.Add(serieA);
+
+            var serieB = new League()
+            {
+                Id = 2,
+                Name = "Serie B",
+                Country = "Italy",
+                LogoImageUrl = "https://tmssl.akamaized.net/images/logo/header/it2.png?lm=1548242827"
+            };
+
+
+            leagues.Add(serieB);
+
+            var serieC = new League()
+            {
+                Id = 3,
+                Name = "Serie C",
+                Country = "Italy",
+                LogoImageUrl = "https://tmssl.akamaized.net/images/logo/header/it3a.png?lm=1599832650"
+            };
+
+
+            leagues.Add(serieC);
+
 
             return leagues;
         }

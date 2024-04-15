@@ -13,7 +13,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Stadium> builder)
         {
-            throw new NotImplementedException();
+            builder.HasData(CreateStadiums());
         }
 
 
@@ -31,6 +31,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Milan"
             };
 
+            stadiums.Add(meazza);
+
             var olimpico = new Stadium()
             {
                 Id = 2,
@@ -40,6 +42,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Viale dei Gladiatori, 00135 Roma RM",
                 City = "Rome"
             };
+
+            stadiums.Add(olimpico);
 
             var gewiss = new Stadium()
             {
@@ -51,6 +55,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Bergamo"
             };
 
+            stadiums.Add(gewiss);
 
             var dallara = new Stadium()
             {
@@ -62,6 +67,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Bologna"
             };
 
+            stadiums.Add(dallara);
+
 
             var unipol = new Stadium()
             {
@@ -72,6 +79,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Via Raimondo Carta Raspi, 09126 Cagliari CA",
                 City = "Cagliari"
             };
+
+            stadiums.Add(unipol);
 
 
 
@@ -85,6 +94,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Empoli"
             };
 
+            stadiums.Add(castellani);
+
 
             var franchi = new Stadium()
             {
@@ -95,6 +106,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Viale Manfredo Fanti, 4, 50137 Firenze FI",
                 City = "Florence"
             };
+
+            stadiums.Add(franchi);
 
 
             var stirpe = new Stadium()
@@ -107,6 +120,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Frozinone"
             };
 
+            stadiums.Add(stirpe);
+
 
             var ferraris = new Stadium()
             {
@@ -117,6 +132,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Via Giovanni de Prà, 1, 16139",
                 City = "Genoa"
             };
+
+            stadiums.Add(ferraris);
 
 
             var bentegodi = new Stadium()
@@ -129,6 +146,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Verona"
             };
 
+            stadiums.Add(bentegodi);
+
 
             var alianz = new Stadium()
             {
@@ -139,6 +158,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Corso Gaetano Scirea, 50, 10151 Torino TO",
                 City = "Turin"
             };
+
+            stadiums.Add(alianz);
 
 
             var viadelmare = new Stadium()
@@ -151,6 +172,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Lecce"
             };
 
+            stadiums.Add(viadelmare);
+
 
             var upower = new Stadium()
             {
@@ -161,6 +184,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Via Franco Tognini, 4, 20900 Monza MB",
                 City = "Monza"
             };
+
+            stadiums.Add(upower);
 
 
             var maradona = new Stadium()
@@ -173,6 +198,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Naples"
             };
 
+            stadiums.Add(maradona);
+
 
             var arechi = new Stadium()
             {
@@ -183,6 +210,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Via Salvador Allende, 84131 Salerno SA",
                 City = "Salerno"
             };
+
+            stadiums.Add(arechi);
 
 
             var mapei = new Stadium()
@@ -195,6 +224,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Reggio Emilia"
             };
 
+            stadiums.Add(mapei);
+
             var torino = new Stadium()
             {
                 Id = 17,
@@ -204,6 +235,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Via Filadelfia, 96/b, 10134 Torino TO",
                 City = "Turin"
             };
+
+            stadiums.Add(torino);
 
 
             var udinese = new Stadium()
@@ -215,6 +248,8 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 Address = "Viale Agostino ed Angelo Candolini, 2 , 33100 Udine UD",
                 City = "Udine"
             };
+
+            stadiums.Add(udinese);
 
 
             return stadiums;
