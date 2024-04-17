@@ -19,9 +19,12 @@ namespace Calciolandia_Website.Controllers
 
         public async Task<IActionResult> Index()
         {
+            
             var model = await leagueService.GetAllAsync();
 
             return View(model);
+
+
         }
 
         [HttpGet]

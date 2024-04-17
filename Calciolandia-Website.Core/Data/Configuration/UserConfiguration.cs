@@ -25,14 +25,20 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var adminUser = new ApplicationUser()
             {
+                Id = Guid.Parse("35e824bf-a9ff-4dfa-9cd7-e0bb181ee50a"),
                 FirstName = "Mihail",
                 LastName = "Videnov",
                 FootballClubId = 5,
                 UserName = "mishaka002",
                 NormalizedUserName = "mishaka002",
                 Email = "m_fvidenov@abv.bg",
-                NormalizedEmail = "m_fvidenov@abv.bg"
+                NormalizedEmail = "m_fvidenov@abv.bg",
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString()
+               
             };
+
+            
 
             adminUser.PasswordHash =
                 hasher.HashPassword(adminUser, "misho123");
@@ -41,19 +47,25 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var user = new ApplicationUser()
             {
+                Id = Guid.Parse("37390eb1-f3f7-45ee-835f-9712488e3aa5"),
                 FirstName = "Luben",
                 LastName = "Videnov",
                 FootballClubId = 7,
                 UserName = "luben_v",
                 NormalizedUserName = "luben_v",
                 Email = "luben_6@abv.bg",
-                NormalizedEmail = "luben_6@abv.bg"
+                NormalizedEmail = "luben_6@abv.bg",
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             user.PasswordHash =
                 hasher.HashPassword(user, "luben123");
 
             users.Add(user);
+
+
+           
 
             return users;
 

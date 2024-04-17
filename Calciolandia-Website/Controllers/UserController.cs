@@ -125,24 +125,24 @@ namespace Calciolandia_Website.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles = RoleConstants.Admin)]
-        public async Task<IActionResult> CreateRoles()
-        {
-            await roleManager.CreateAsync(new IdentityRole<Guid>(RoleConstants.Admin));
+        
+        //public async Task<IActionResult> CreateRoles()
+        //{
+        //    await roleManager.CreateAsync(new IdentityRole<Guid>(RoleConstants.Admin));
 
-            return RedirectToAction("Index", "Home");
-        }
+        //    return RedirectToAction("Index", "Home");
+        //}
 
-        [Authorize(Roles = RoleConstants.Admin)]
-        public async Task<IActionResult> AddUsersToRoles()
-        {
-            string email = "m_fvidenov@abv.bg";
+        
+        //public async Task<IActionResult> AddUsersToRoles()
+        //{
+        //    string email = "m_fvidenov@abv.bg";
 
-            var user = await userManager.FindByEmailAsync(email);
+        //    var user = await userManager.FindByEmailAsync(email);
 
-            await userManager.AddToRoleAsync(user, RoleConstants.Admin);
+        //    await userManager.AddToRoleAsync(user, RoleConstants.Admin);
 
-            return RedirectToAction("Index", "Home");
-        }
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

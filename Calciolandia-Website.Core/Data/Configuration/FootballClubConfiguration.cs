@@ -31,9 +31,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Bergamo",
                 Address = "Zingonia - Corso Europa 20040 Bergamo Italy",
                 LeagueId = 1,
-                StadiumId = 3,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 3
 
             };
 
@@ -50,9 +48,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Bologna",
                 Address = "Via Casteldebole 10 40132 Bologna Italy",
                 LeagueId = 1,
-                StadiumId = 4,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 4
 
             };
 
@@ -70,9 +66,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Cagliari",
                 Address = "Via Mameli 106 09123 Cagliari Italy",
                 LeagueId = 1,
-                StadiumId = 5,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 5
 
             };
 
@@ -90,9 +84,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Empoli",
                 Address = "Via di Pianezzoli 50053 Empoli Italy",
                 LeagueId = 1,
-                StadiumId = 6,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 6
 
             };
 
@@ -110,9 +102,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Florence",
                 Address = " Viale Manfredo Fanti, 4 50137 Firenze Italy",
                 LeagueId = 1,
-                StadiumId = 7,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 7
 
             };
 
@@ -130,9 +120,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Frosinone",
                 Address = "Viale Olimpia 03100 Frosinone Italy",
                 LeagueId = 1,
-                StadiumId = 8,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 8
 
             };
 
@@ -150,9 +138,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Genoa",
                 Address = "Via Ronchi 67 16155 Genova Italy",
                 LeagueId = 1,
-                StadiumId = 9,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 9
 
             };
 
@@ -170,9 +156,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Verona",
                 Address = "Via Torricelli 37 37136 Verona Italy",
                 LeagueId = 1,
-                StadiumId = 10,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 10
 
             };
 
@@ -190,9 +174,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Milan",
                 Address = "Viale della Liberazione Milano Italy",
                 LeagueId = 1,
-                StadiumId = 1,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 1
 
             };
 
@@ -211,9 +193,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Turin",
                 Address = "Via Druento, 175 10151 Torino Italy",
                 LeagueId = 1,
-                StadiumId = 11,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 11
 
             };
 
@@ -231,9 +211,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Rome",
                 Address = "Via di Santa Cornelia 1000 00060 Roma Italy",
                 LeagueId = 1,
-                StadiumId = 2,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 2
 
             };
 
@@ -251,9 +229,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Lecce",
                 Address = "Colonello Archimede Costadura 3 73100 Lecce Italy",
                 LeagueId = 1,
-                StadiumId = 12,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 12
 
             };
 
@@ -271,9 +247,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Milan",
                 Address = "Via Aldo Rossi 8 20149 Milano Italy",
                 LeagueId = 1,
-                StadiumId = 1,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 1
 
             };
 
@@ -291,9 +265,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Monza",
                 Address = "Via Ragazzi del '99, 14 20900 Monza Italy",
                 LeagueId = 1,
-                StadiumId = 13,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 13
 
             };
 
@@ -312,9 +284,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Naples",
                 Address = "Via del Maio di Porto 9 80133 Napoli Italy",
                 LeagueId = 1,
-                StadiumId = 14,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 14
 
             };
 
@@ -332,9 +302,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Rome",
                 Address = "Piazzale Dino Viola 1 00128 Roma Italy",
                 LeagueId = 1,
-                StadiumId = 2,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 2
 
             };
 
@@ -352,9 +320,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Salerno",
                 Address = "Via Salvador Allende 84131 Salerno Italy",
                 LeagueId = 1,
-                StadiumId = 15,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 15
 
             };
 
@@ -372,10 +338,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Sassuolo",
                 Address = "Piazza Risorgimento 47 41049 Sassuolo Italy",
                 LeagueId = 1,
-                StadiumId = 16,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
-
+                StadiumId = 16
             };
 
             footballClubs.Add(sassuolo);
@@ -393,9 +356,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Turin",
                 Address = "Via Arcivescovado 1 10121 Torino Italy",
                 LeagueId = 1,
-                StadiumId = 17,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 17
 
             };
 
@@ -413,9 +374,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
                 City = "Udine",
                 Address = "Via A. e A. Candolini 2 33100 Udine Italy",
                 LeagueId = 1,
-                StadiumId = 18,
-                ManagerId = Guid.Parse(""),
-                PresidentId = Guid.Parse("")
+                StadiumId = 18
 
             };
 

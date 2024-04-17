@@ -60,14 +60,8 @@ namespace Calciolandia_Website.Core.Data.Models
 
         public List<Player> Players { get; set; } = null!;
 
-        public Guid? ManagerId { get; set; }
+        public List<Manager> Managers { get; set; } = null!;
 
-        [ForeignKey(nameof(ManagerId))]
-        public IEnumerable<Manager> Managers { get; set; }
-
-        public Guid? PresidentId { get; set; }
-
-        [ForeignKey(nameof(PresidentId))]
-        public IEnumerable<President> Presidents { get; set; }
+        public List<President> Presidents { get; set; } = null!;
     }
 }

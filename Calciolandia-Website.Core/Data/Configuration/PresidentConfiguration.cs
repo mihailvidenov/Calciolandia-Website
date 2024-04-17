@@ -24,7 +24,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var scaroni = new President()
             {
-                Id = Guid.Parse("7C4DEC78-B4C0-4E9E-593E-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Paolo",
                 LastName = "Scaroni",
                 Nationality = "Italy",
@@ -39,7 +39,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var laurentis = new President()
             {
-                Id = Guid.Parse("4A817DB8-C8F2-4867-593F-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Aurelio",
                 LastName = "de Laurentis",
                 Nationality = "Italy",
@@ -53,7 +53,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var ferrero = new President()
             {
-                Id = Guid.Parse("414F6B28-46B1-4BB6-5940-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Gianluca",
                 LastName = "Ferrero",
                 Nationality = "Italy",
@@ -68,7 +68,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var friedkin = new President()
             {
-                Id = Guid.Parse("44AA7E9D-FC1D-46DA-5941-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Dan",
                 LastName = "Friedkin",
                 Nationality = "USA",
@@ -83,7 +83,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var zhang = new President()
             {
-                Id = Guid.Parse("33CDCD5A-5750-422C-5942-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Steven",
                 LastName = "Zhang",
                 Nationality = "China",
@@ -98,7 +98,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var percassi = new President()
             {
-                Id = Guid.Parse("556F58AB-5299-40E0-5943-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Antonio",
                 LastName = "Percassi",
                 Nationality = "Italy",
@@ -113,7 +113,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var commiso = new President()
             {
-                Id = Guid.Parse("7CA91D08-48A5-4A44-5944-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Rocco",
                 LastName = "Commisso",
                 Nationality = "USA",
@@ -129,7 +129,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var lotito = new President()
             {
-                Id = Guid.Parse("ED07FFCA-8FA0-40E9-5945-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Claudio",
                 LastName = "Lotito",
                 Nationality = "Italy",
@@ -144,7 +144,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var cairo = new President()
             {
-                Id = Guid.Parse("EDA97AAB-8BAE-40F7-5946-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Urbano",
                 LastName = "Cairo",
                 Nationality = "Italy",
@@ -158,7 +158,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var rossi = new President()
             {
-                Id = Guid.Parse("4F045FD5-7D0D-4A7F-5947-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Carlo",
                 LastName = "Rossi",
                 Nationality = "Italy",
@@ -172,7 +172,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var pozzo = new President()
             {
-                Id = Guid.Parse("90446732-41A7-4D0E-5948-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Giampaolo",
                 LastName = "Pozzo",
                 Nationality = "Italy",
@@ -186,7 +186,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var saputo = new President()
             {
-                Id = Guid.Parse("AE4CAFAB-779B-47AE-5949-08DB998F0F64"),
+                Id = Guid.NewGuid(),
                 FirstName = "Joey",
                 LastName = "Saputo",
                 Nationality = "Canada",
@@ -201,7 +201,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var berlusconi = new President()
             {
-                Id = Guid.Parse("0382D067-50B5-4768-7570-08DB9991D82A"),
+                Id = Guid.NewGuid(),
                 FirstName = "Paolo",
                 LastName = "Berlusconi",
                 Nationality = "Italy",
@@ -216,7 +216,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var iervolino = new President()
             {
-                Id = Guid.Parse("44701BB4-FA56-476A-081C-08DB99A8E6C4"),
+                Id = Guid.NewGuid(),
                 FirstName = "Danilo",
                 LastName = "Iervolino",
                 Nationality = "Italy",
@@ -231,7 +231,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var zangrillo = new President()
             {
-                Id = Guid.Parse("835ED5DE-F0BD-4B9B-081D-08DB99A8E6C4"),
+                Id = Guid.NewGuid(),
                 FirstName = "Alberto",
                 LastName = "Zangrillo",
                 Nationality = "Italy",
@@ -246,7 +246,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var damiani = new President()
             {
-                Id = Guid.Parse("E7B766FD-1B8E-4444-081E-08DB99A8E6C4"),
+                Id = Guid.NewGuid(),
                 FirstName = "Saverio",
                 LastName = "Sticchi Damiani",
                 Nationality = "Italy",
@@ -261,7 +261,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var corsi = new President()
             {
-                Id = Guid.Parse("C4CA8CBC-F9DA-4174-081F-08DB99A8E6C4"),
+                Id = Guid.NewGuid(),
                 FirstName = "Fabrizio",
                 LastName = "Corsi",
                 Nationality = "Italy",
@@ -275,7 +275,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var setti = new President()
             {
-                Id = Guid.Parse("A99B9966-32F9-4801-0820-08DB99A8E6C4"),
+                Id = Guid.NewGuid(),
                 FirstName = "Maurizio",
                 LastName = "Setti",
                 Nationality = "Italy",
@@ -290,7 +290,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var guillini = new President()
             {
-                Id = Guid.Parse("EA2DE2CD-5C64-4158-0821-08DB99A8E6C4"),
+                Id = Guid.NewGuid(),
                 FirstName = "Tommaso",
                 LastName = "Giulini",
                 Nationality = "Italy",
@@ -304,7 +304,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var stirpe = new President()
             {
-                Id = Guid.Parse("B9D03F08-24D9-4EBF-0822-08DB99A8E6C4"),
+                Id = Guid.NewGuid(),
                 FirstName = "Maurizio",
                 LastName = "Stirpe",
                 Nationality = "Italy",

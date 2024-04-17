@@ -23,7 +23,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var pioli = new Manager()
             {
-                Id = Guid.Parse("FBCAD50E-CD5E-4115-9A7D-08DB980C8450"),
+                Id = Guid.NewGuid(),
                 FirstName = "Stefano",
                 LastName = "Pioli",
                 Nationality = "Italy",
@@ -40,7 +40,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var calzona = new Manager()
             {
-                Id = Guid.Parse("3a787990-b336-49e1-b355-e57409c72281"),
+                Id = Guid.NewGuid(),
                 FirstName = "Francesco",
                 LastName = "Calzona",
                 Nationality = "Italy",
@@ -57,7 +57,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var allegri = new Manager()
             {
-                Id = Guid.Parse("6E49D0F2-E02D-4671-5B5B-08DB980D1780"),
+                Id = Guid.NewGuid(),
                 FirstName = "Massimiliano",
                 LastName = "Allegri",
                 Nationality = "Italy",
@@ -74,7 +74,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var inzaghi = new Manager()
             {
-                Id = Guid.Parse("03AACAC2-A624-4193-5B5C-08DB980D1780"),
+                Id = Guid.NewGuid(),
                 FirstName = "Simone",
                 LastName = "Inzaghi",
                 Nationality = "Italy",
@@ -90,7 +90,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var gasperini = new Manager()
             {
-                Id = Guid.Parse("9A8B7FA6-9F60-48B1-5B5D-08DB980D1780"),
+                Id = Guid.NewGuid(),
                 FirstName = "Gian Piero",
                 LastName = "Gasperini",
                 Nationality = "Italy",
@@ -107,7 +107,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var derossi = new Manager()
             {
-                Id = Guid.Parse("f3e0393d-c8ed-40b0-8f3e-ec29b9294e20"),
+                Id = Guid.NewGuid(),
                 FirstName = "Daniele",
                 LastName = "De Rossi",
                 Nationality = "Italy",
@@ -124,7 +124,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var italiano = new Manager()
             {
-                Id = Guid.Parse("8685A169-3A64-4E33-5B5F-08DB980D1780"),
+                Id = Guid.NewGuid(),
                 FirstName = "Vincenzo",
                 LastName = "Italiano",
                 Nationality = "Italy",
@@ -141,7 +141,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var tudor = new Manager()
             {
-                Id = Guid.Parse("c5db0625-827a-40ed-87b9-37b9ccf41bea"),
+                Id = Guid.NewGuid(),
                 FirstName = "Igor",
                 LastName = "Tudor",
                 Nationality = "Croatia",
@@ -158,7 +158,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var ballardini = new Manager()
             {
-                Id = Guid.Parse("29a31ed7-fd98-4b6f-ab33-4eddcf9ee312"),
+                Id = Guid.NewGuid(),
                 FirstName = "Davide",
                 LastName = "Ballardini",
                 Nationality = "Italy",
@@ -175,7 +175,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var coffi = new Manager()
             {
-                Id = Guid.Parse("4ebcd8d1-42db-44d2-8423-9916d62b4414"),
+                Id = Guid.NewGuid(),
                 FirstName = "Gabriele",
                 LastName = "Cioffi",
                 Nationality = "Italy",
@@ -192,7 +192,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var motta = new Manager()
             {
-                Id = Guid.Parse("1ACD356F-CB50-4B4B-5CA0-08DB99872284"),
+                Id = Guid.NewGuid(),
                 FirstName = "Thiago",
                 LastName = "Motta",
                 Nationality = "Italy/Brazil",
@@ -209,7 +209,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var palladino = new Manager()
             {
-                Id = Guid.Parse("993CDBAD-1F4F-4B11-5CA1-08DB99872284"),
+                Id = Guid.NewGuid(),
                 FirstName = "Raffaele",
                 LastName = "Palladino",
                 Nationality = "Italy",
@@ -226,7 +226,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var cuantuono = new Manager()
             {
-                Id = Guid.Parse("1f02ddf3-6925-48c9-8ed8-8783d16a499f"),
+                Id = Guid.NewGuid(),
                 FirstName = "Stefano",
                 LastName = "Colantuono",
                 Nationality = "Italy",
@@ -243,7 +243,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var gilardino = new Manager()
             {
-                Id = Guid.Parse("C0BF9F6E-C7B1-4A86-5CA3-08DB99872284"),
+                Id = Guid.NewGuid(),
                 FirstName = "Alberto",
                 LastName = "Gilardino",
                 Nationality = "Italy",
@@ -260,7 +260,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var gotti = new Manager()
             {
-                Id = Guid.Parse("9743ff5a-8fd2-409a-9541-54680ec38c1a"),
+                Id = Guid.NewGuid(),
                 FirstName = "Luca",
                 LastName = "Gotti",
                 Nationality = "Italy",
@@ -276,7 +276,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var nicola = new Manager()
             {
-                Id = Guid.Parse("9e16cb0c-c505-4e64-a832-26c5a100b708"),
+                Id = Guid.NewGuid(),
                 FirstName = "Davide",
                 LastName = "Nicola",
                 Nationality = "Italy",
@@ -293,7 +293,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var baroni = new Manager()
             {
-                Id = Guid.Parse("D8A4735D-2F49-4688-5CA6-08DB99872284"),
+                Id = Guid.NewGuid(),
                 FirstName = "Marco",
                 LastName = "Baroni",
                 Nationality = "Italy",
@@ -310,7 +310,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var ranieri = new Manager()
             {
-                Id = Guid.Parse("E578C5B7-0E1B-4418-5CA7-08DB99872284"),
+                Id = Guid.NewGuid(),
                 FirstName = "Claudio",
                 LastName = "Ranieri",
                 Nationality = "Italy",
@@ -327,7 +327,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var difrancesco = new Manager()
             {
-                Id = Guid.Parse("F94081A5-624A-4104-5CA8-08DB99872284"),
+                Id = Guid.NewGuid(),
                 FirstName = "Eusebio",
                 LastName = "Di Francesco",
                 Nationality = "Italy",
@@ -344,7 +344,7 @@ namespace Calciolandia_Website.Core.Data.Configuration
 
             var juric = new Manager()
             {
-                Id = Guid.Parse("3DFAFA4D-B5AE-4239-5B10-08DB9989ABB6"),
+                Id = Guid.NewGuid(),
                 FirstName = "Ivan",
                 LastName = "Juric",
                 Nationality = "Croatia",

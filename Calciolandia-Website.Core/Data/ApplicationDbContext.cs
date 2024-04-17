@@ -1,4 +1,5 @@
-﻿using Calciolandia_Website.Core.Data.Models;
+﻿using Calciolandia_Website.Core.Data.Configuration;
+using Calciolandia_Website.Core.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,10 @@ namespace Calciolandia_Website.Core.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+           
             base.OnModelCreating(builder);
+
+            
 
             builder.Entity<FootballClub>(f =>
             {
@@ -60,6 +64,25 @@ namespace Calciolandia_Website.Core.Data
                 s.Property(s => s.IsDeleted).HasDefaultValue(false);
             });
 
+            
+
+            //builder.Entity<IdentityUserRole<string>>(entity =>
+            //{
+            //    entity.ToTable(name: "AspNetUserRoles");
+            //    entity.HasKey(r => new { r.RoleId, r.UserId });
+            //});
+
+            
+
+            builder.ApplyConfiguration(new LeagueConfiguration());
+            builder.ApplyConfiguration(new StadiumConfiguration());
+            builder.ApplyConfiguration(new FootballClubConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new ManagerConfiguration());
+            builder.ApplyConfiguration(new PlayerConfiguration());
+            builder.ApplyConfiguration(new PresidentConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new UserRoleConfiguration());
 
         }
     }
