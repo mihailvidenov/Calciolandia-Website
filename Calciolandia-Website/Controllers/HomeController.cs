@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net.Mail;
 
 namespace Calciolandia_Website.Controllers
 {
@@ -23,6 +24,7 @@ namespace Calciolandia_Website.Controllers
         public IActionResult AboutUs()
         {
             return View();
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
