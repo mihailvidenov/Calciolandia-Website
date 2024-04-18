@@ -17,7 +17,7 @@
                             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
                             <form id="registerForm" method="post">
-
+                                @Html.AntiForgeryToken()
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-outline mb-4">
                                     <label asp-for="FirstName" class="form-label">Your First Name</label>

@@ -37,6 +37,9 @@ builder.Services.AddScoped<IPresidentService, PresidentService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 
 
+builder.Services.AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN");
+
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/User/Login";
