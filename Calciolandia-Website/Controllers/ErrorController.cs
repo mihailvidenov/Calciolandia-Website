@@ -1,4 +1,5 @@
-﻿using Calciolandia_Website.Core.Models;
+﻿
+using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calciolandia_Website.Controllers

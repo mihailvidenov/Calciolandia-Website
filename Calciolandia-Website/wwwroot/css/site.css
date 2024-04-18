@@ -60,3 +60,19 @@ body {
     text-align: center;
     margin-top: 20px;
 }
+
+
+.error-header {
+    font-size: 100px;
+     color: white
+}
+
+.err {
+    color: white;
+    font-size:50px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
