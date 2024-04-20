@@ -106,6 +106,7 @@ namespace Calciolandia_Website.Controllers
         {
             var model = await playerService.GetPlayerById(id);
 
+
             return View(model);
         }
     }

@@ -12,6 +12,7 @@ namespace Calciolandia_Website.Core.Data.Models
         public League()
         {
             this.FootballClubs = new List<FootballClub>();
+            this.Fixtures = new List<Fixture>();
         }
 
         [Key]
@@ -32,5 +33,7 @@ namespace Calciolandia_Website.Core.Data.Models
         public bool IsDeleted { get; set; }
 
         public List<FootballClub> FootballClubs { get; set; } = null!;
+
+        public List<Fixture> Fixtures { get; set; } = null!;
     }
 }

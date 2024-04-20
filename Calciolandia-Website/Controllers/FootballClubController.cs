@@ -4,6 +4,7 @@ using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.Xml;
 
 namespace Calciolandia_Website.Controllers
 {
@@ -15,9 +16,14 @@ namespace Calciolandia_Website.Controllers
         {
             footballClubService = _footballClubService;
         }
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(int id, string searchString)
         {
             var model = await footballClubService.GetAllAsync(id);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(s => s.Name.ToLower().Contains(searchString.ToLower()));
+            }
 
             return View(model);
         }
@@ -101,9 +107,10 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetOne(int id)
+        public async Task<IActionResult> GetOne(int id, string searchString)
         {
             var model = await footballClubService.GetFootballClubAsync(id);
+
 
             model.Players = await footballClubService.GetPlayersByFootballClub(id);
             model.Presidents = await footballClubService.GetPresidentByFootballClub(id);

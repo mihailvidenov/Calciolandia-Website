@@ -32,12 +32,15 @@ namespace Calciolandia_Website.Core.Data
                 f.HasMany(f => f.Managers).WithOne(f => f.FootballClub);
                 f.HasMany(f => f.Presidents).WithOne(f => f.FootballClub);
                 f.HasMany(f => f.Players).WithOne(f => f.FootballClub);
+                f.HasMany(f => f.Fixtures).WithOne(f => f.HomeTeam);
+                f.HasMany(f => f.Fixtures).WithOne(f => f.AwayTeam);
                 f.Property(f => f.IsDeleted).HasDefaultValue(false);
             });
 
             builder.Entity<League>(l =>
             {
                 l.HasMany(l => l.FootballClubs).WithOne(l => l.League);
+                l.HasMany(l => l.Fixtures).WithOne(l => l.League);
                 l.Property(l => l.IsDeleted).HasDefaultValue(false);
             });
 
@@ -61,10 +64,18 @@ namespace Calciolandia_Website.Core.Data
             builder.Entity<Stadium>(s =>
             {
                 s.HasMany(s => s.FootballClubs).WithOne(s => s.Stadium);
+                s.HasMany(s => s.Fixtures).WithOne(s => s.Stadium);
                 s.Property(s => s.IsDeleted).HasDefaultValue(false);
             });
 
-            
+            builder.Entity<Fixture>(s =>
+            {
+               
+                s.Property(s => s.IsDeleted).HasDefaultValue(false);
+            });
+
+
+
 
             //builder.Entity<IdentityUserRole<string>>(entity =>
             //{
@@ -72,7 +83,7 @@ namespace Calciolandia_Website.Core.Data
             //    entity.HasKey(r => new { r.RoleId, r.UserId });
             //});
 
-            
+
 
             builder.ApplyConfiguration(new LeagueConfiguration());
             builder.ApplyConfiguration(new StadiumConfiguration());
