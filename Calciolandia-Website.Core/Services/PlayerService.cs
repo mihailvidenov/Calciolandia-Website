@@ -1,4 +1,5 @@
 ﻿using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data;
 using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
@@ -15,11 +16,13 @@ namespace Calciolandia_Website.Core.Services
     public class PlayerService : IPlayerService
     {
 
-        private readonly IRepository repo;
+        
+        private readonly ApplicationDbContext dbContext;
 
-        public PlayerService(IRepository _repo)
+        public PlayerService(ApplicationDbContext _dbContext)
         {
-            repo = _repo;
+            
+            dbContext = _dbContext;
         }
         public async Task AddAsync(PlayerViewModel model)
         {
@@ -41,19 +44,19 @@ namespace Calciolandia_Website.Core.Services
 
             };
 
-            await repo.AddAsync(player);
-            await repo.SaveChangesAsync();
+            await dbContext.Players.AddAsync(player);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var player = await repo.GetByIdAsync<Player>(id);
+            var player = await dbContext.Players.FindAsync(id);
 
             if (player != null)
             {
                 player.IsDeleted = true;
 
-                await repo.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
         }
 
@@ -61,8 +64,9 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<PlayerViewModel>> GetAllAsync()
         {
-            var entities = await repo.AllReadonly<Player>()
+            var entities = await dbContext.Players
                 .Where(p => p.IsDeleted == false)
+                .AsNoTracking()
                 .ToListAsync();
 
             return entities.Select(e => new PlayerViewModel()
@@ -85,14 +89,15 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<FootballClub>> GetAllFootballClubsAsync()
         {
-            return await repo.All<FootballClub>()
+            return await dbContext.FootballClubs
                 .Where(f => f.IsDeleted == false)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<PlayerViewModel> GetForEditAsync(Guid id)
         {
-            var player = await repo.GetByIdAsync<Player>(id);
+            var player = await dbContext.Players.FindAsync(id);
 
             var model = new PlayerViewModel()
             {
@@ -116,7 +121,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task EditAsync(PlayerViewModel model)
         {
-            var player = await repo.GetByIdAsync<Player>(model.Id);
+            var player = await dbContext.Players.FindAsync(model.Id);
 
             player.FirstName = model.FirstName;
             player.LastName = model.LastName;
@@ -131,13 +136,13 @@ namespace Calciolandia_Website.Core.Services
             player.ImageUrl = model.ImageUrl;
             player.FootballClubId = model.FootballClubId;
 
-            await repo.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
 
         }
 
         public async Task<PlayerInfoViewModel> GetPlayerById(Guid id)
         {
-            var player = await repo.GetByIdAsync<Player>(id);
+            var player = await dbContext.Players.FindAsync(id);
 
             var model = new PlayerInfoViewModel() 
             { 

@@ -18,9 +18,6 @@ namespace Calciolandia_Website.Core.Models
         [StringLength(20, MinimumLength = 3)]
         public string FirstName { get; set; } = null!;
 
-        //[Required]
-        //[StringLength(20, MinimumLength = 3)]
-        //public string MiddleName { get; set; } = null!;
 
         [Required]
         [StringLength(20, MinimumLength = 3)]

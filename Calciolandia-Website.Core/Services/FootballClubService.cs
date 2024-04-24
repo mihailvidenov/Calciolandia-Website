@@ -1,4 +1,5 @@
 ﻿using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data;
 using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
@@ -13,10 +14,11 @@ namespace Calciolandia_Website.Core.Services
 {
     public class FootballClubService : IFootballClubService
     {
-        private readonly IRepository repo;
-        public FootballClubService(IRepository _repo)
+       
+        private readonly ApplicationDbContext dbContext;
+        public FootballClubService(ApplicationDbContext _dbContext)
         {
-            repo = _repo;
+            dbContext = _dbContext;
         }
         public async Task AddAsync(FootballClubViewModel model)
         {
@@ -33,20 +35,20 @@ namespace Calciolandia_Website.Core.Services
                 LeagueId = model.LeagueId
             };
 
-            await repo.AddAsync(footballClub);
-            await repo.SaveChangesAsync();
+            await dbContext.FootballClubs.AddAsync(footballClub);
+            await dbContext.SaveChangesAsync();
 
         }
 
         public async Task DeleteAsync(int id)
         {
-            var footballClub = await repo.GetByIdAsync<FootballClub>(id);
+            var footballClub = await dbContext.FootballClubs.FindAsync(id);
 
             if (footballClub != null)
             {
                 footballClub.IsDeleted = true;
 
-                await repo.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
 
         }
@@ -55,7 +57,8 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<FootballClubViewModel>> GetAllAsync(int id)
         {
-            var entities = await repo.AllReadonly<FootballClub>()
+            var entities = await dbContext.FootballClubs
+                .AsNoTracking()
                 .Where(f => f.IsDeleted == false && f.LeagueId == id).ToListAsync();
 
             return entities
@@ -76,7 +79,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<FootballClubViewModel> GetForEditAsync(int id)
         {
-            var footballClub = await repo.GetByIdAsync<FootballClub>(id);
+            var footballClub = await dbContext.FootballClubs.FindAsync(id);
 
             var model = new FootballClubViewModel()
             {
@@ -98,7 +101,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task EditAsync(FootballClubViewModel model)
         {
-            var footballClub = await repo.GetByIdAsync<FootballClub>(model.Id);
+            var footballClub = await dbContext.FootballClubs.FindAsync(model.Id);
 
             footballClub.Name = model.Name;
             footballClub.Nickname = model.Nickname;
@@ -110,22 +113,24 @@ namespace Calciolandia_Website.Core.Services
             footballClub.LeagueId = model.LeagueId;
             footballClub.StadiumId = model.StadiumId;
 
-            await repo.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<League>> GetLeaguesAsync()
         {
-            return await repo.All<League>().ToListAsync(); 
+            return await dbContext.Leagues.Where(l => l.IsDeleted == false)
+                .AsNoTracking().ToListAsync(); 
         }
 
         public async Task<IEnumerable<Stadium>> GetStadiumsAsync()
         {
-            return await repo.All<Stadium>().ToListAsync();
+            return await dbContext.Stadiums.Where(l => l.IsDeleted == false)
+                .AsNoTracking().ToListAsync();
         }
 
         public async Task<GetFootballClubViewModel> GetFootballClubAsync(int id)
         {
-            var footballClub = await repo.GetByIdAsync<FootballClub>(id);
+            var footballClub = await dbContext.FootballClubs.FindAsync(id);
 
             var model = new GetFootballClubViewModel()
             { 
@@ -146,36 +151,41 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<Player>> GetPlayersByFootballClub(int id)
         {
-            return await repo.AllReadonly<Player>()
+            return await dbContext.Players
                 .Where(p => p.IsDeleted == false && p.FootballClubId == id)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Manager>> GetManagersByFootballClub(int id)
         {
-            return await repo.AllReadonly<Manager>()
+            return await dbContext.Managers
                 .Where(m => m.IsDeleted == false && m.FootballClubId == id)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<President>> GetPresidentByFootballClub(int id)
         {
-            return await repo.AllReadonly<President>()
+            return await dbContext.Presidents
                 .Where(p => p.IsDeleted == false && p.FootballClubId == id)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Stadium>> GetStadiumById(int id)
         {
-            return await repo.AllReadonly<Stadium>()
+            return await dbContext.Stadiums
                 .Where(s => s.IsDeleted == false && s.FootballClubs.Any((fc => fc.Id == id)))
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Fixture>> GetFixturesByFootballClub(int id)
         {
-            return await repo.AllReadonly<Fixture>()
-                .Where(f => f.IsDeleted == false && (f.HomeTeamId == id || f.AwayTeamId == id)).ToListAsync();
+            return await dbContext.Fixtures
+                .Where(f => f.IsDeleted == false && (f.HomeTeamId == id || f.AwayTeamId == id))
+                .AsNoTracking().ToListAsync();
 
 
         }

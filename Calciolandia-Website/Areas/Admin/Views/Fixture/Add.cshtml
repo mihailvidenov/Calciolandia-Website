@@ -81,16 +81,6 @@
                 <span asp-validation-for="LeagueId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.StadiumId" class="form-label text-light">Stadium</label>
-                <select asp-for="@Model.StadiumId" class="form-control">
-                    @foreach (var stadium in Model.Stadiums)
-                    {
-                        <option value="@stadium.Id">@stadium.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="StadiumId" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
                 <input class="btn btn-primary" type="submit" value="Add" />
             </div>
         </form>

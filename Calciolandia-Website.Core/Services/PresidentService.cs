@@ -1,4 +1,5 @@
 ﻿using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data;
 using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
@@ -14,11 +15,13 @@ namespace Calciolandia_Website.Core.Services
 {
     public class PresidentService : IPresidentService
     {
-        private readonly IRepository repo;
+        
+        private readonly ApplicationDbContext dbContext;
 
-        public PresidentService(IRepository _repo)
+        public PresidentService(ApplicationDbContext _dbContext)
         {
-            repo = _repo;
+            
+            dbContext = _dbContext;
         }
 
         public async Task AddAsync(PresidentViewModel model)
@@ -26,7 +29,6 @@ namespace Calciolandia_Website.Core.Services
             var owner = new President()
             {
                 FirstName = model.FirstName,
-                //MiddleName = model.MiddleName,
                 LastName = model.LastName,
                 Age = model.Age,
                 Nationality = model.Nationality,
@@ -35,18 +37,18 @@ namespace Calciolandia_Website.Core.Services
                 FootballClubId = model.FootballClubId
             };
 
-            await repo.AddAsync(owner);
-            await repo.SaveChangesAsync();
+            await dbContext.Presidents.AddAsync(owner);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var owner = await repo.GetByIdAsync<President>(id);
+            var owner = await dbContext.Presidents.FindAsync(id);
 
             if (owner != null)
             {
                 owner.IsDeleted = true;
-                await repo.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
         }
 
@@ -54,15 +56,15 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<PresidentViewModel>> GetAllAsync()
         {
-            var entities = await repo.AllReadonly<President>()
+            var entities = await dbContext.Presidents
                 .Where(o => o.IsDeleted == false)
+                .AsNoTracking()
                 .ToListAsync();
 
             return entities.Select(e => new PresidentViewModel()
             {
                 Id = e.Id,
                 FirstName = e.FirstName,
-                //MiddleName = e.MiddleName,
                 LastName = e.LastName,
                 Age = e.Age,
                 Nationality = e.Nationality,
@@ -74,14 +76,15 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<FootballClub>> GetAllFootballClubsAsync()
         {
-            return await repo.All<FootballClub>()
+            return await dbContext.FootballClubs
                 .Where(f => f.IsDeleted == false)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<PresidentViewModel> GetForEditAsync(Guid id)
         {
-            var president = await repo.GetByIdAsync<President>(id);
+            var president = await dbContext.Presidents.FindAsync(id);
 
             var model = new PresidentViewModel()
             {
@@ -100,7 +103,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task EditAsync(PresidentViewModel model)
         {
-            var president = await repo.GetByIdAsync<President>(model.Id);
+            var president = await dbContext.Presidents.FindAsync(model.Id);
 
             president.FirstName = model.FirstName;
             president.LastName = model.LastName;
@@ -110,12 +113,12 @@ namespace Calciolandia_Website.Core.Services
             president.ImageUrl = model.ImageUrl;
             president.FootballClubId = model.FootballClubId;
 
-            await repo.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<PresidentInfoViewModel> GetPresidentById(Guid id)
         {
-            var president = await repo.GetByIdAsync<President>(id);
+            var president = await dbContext.Presidents.FindAsync(id);
 
             var model = new PresidentInfoViewModel()
             {

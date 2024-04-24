@@ -1,14 +1,14 @@
-﻿using Calciolandia_Website.Areas.Admin;
-using Calciolandia_Website.Core.Constants;
+﻿using Calciolandia_Website.Core.Constants;
 using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
-namespace Calciolandia_Website.Controllers
+namespace Calciolandia_Website.Areas.Admin.Controllers
 {
-    public class PresidentController : BaseController
+    public class PresidentController : AdminController
     {
         private readonly IPresidentService presidentService;
 
@@ -17,15 +17,11 @@ namespace Calciolandia_Website.Controllers
             presidentService = _presidentService;
         }
 
+        
 
         [HttpGet]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add()
         {
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Add), nameof(President), new { area = "Admin" });
-            }
             var model = new PresidentViewModel()
             {
                 FootballClubs = await presidentService.GetAllFootballClubsAsync()
@@ -35,13 +31,8 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add(PresidentViewModel model)
         {
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Add), nameof(President), new { area = "Admin" });
-            }
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -60,27 +51,21 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
-       
-        [Authorize(Roles = RoleConstants.Admin)]
+
+
         public async Task<IActionResult> Delete(Guid id)
         {
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Delete), nameof(President), new { area = "Admin" });
-            }
+
             await presidentService.DeleteAsync(id);
 
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
-        [Authorize(Roles = RoleConstants.Admin)]
+
         public async Task<IActionResult> Edit(Guid id)
         {
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Edit), nameof(President), new { area = "Admin" });
-            }
+
             var model = await presidentService.GetForEditAsync(id);
 
             model.FootballClubs = await presidentService.GetAllFootballClubsAsync();
@@ -89,13 +74,9 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(PresidentViewModel model)
         {
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Edit), nameof(President), new { area = "Admin" });
-            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -118,14 +99,12 @@ namespace Calciolandia_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> Info(Guid id)
         {
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Info), nameof(President), new { area = "Admin" });
-            }
+
 
             var model = await presidentService.GetPresidentById(id);
 
             return View(model);
         }
     }
+
 }

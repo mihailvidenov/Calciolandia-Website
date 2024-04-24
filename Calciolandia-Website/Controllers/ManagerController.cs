@@ -5,7 +5,6 @@ using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace Calciolandia_Website.Controllers
 {
@@ -18,12 +17,7 @@ namespace Calciolandia_Website.Controllers
             managerService = _managerService;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    //var model = await managerService.GetAllAsync();
-
-        //    //return View(model);
-        //}
+       
 
         [HttpGet]
         [Authorize(Roles = RoleConstants.Admin)]

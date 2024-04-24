@@ -3,10 +3,8 @@ using Calciolandia_Website.Core.Constants;
 using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
-using Calciolandia_Website.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace Calciolandia_Website.Controllers
 {

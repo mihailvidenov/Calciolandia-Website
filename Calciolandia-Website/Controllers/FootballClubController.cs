@@ -5,8 +5,6 @@ using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.Xml;
 
 namespace Calciolandia_Website.Controllers
 {

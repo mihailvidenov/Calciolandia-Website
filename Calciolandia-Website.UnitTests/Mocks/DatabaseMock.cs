@@ -1,4 +1,5 @@
 ﻿using Calciolandia_Website.Core.Data;
+using Calciolandia_Website.Core.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

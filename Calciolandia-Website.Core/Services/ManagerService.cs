@@ -1,4 +1,5 @@
 ﻿using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data;
 using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
@@ -14,11 +15,13 @@ namespace Calciolandia_Website.Core.Services
 {
     public class ManagerService : IManagerService
     {
-        private readonly IRepository repo;
+        
+        private readonly ApplicationDbContext dbContext;
 
-        public ManagerService(IRepository _repo)
+        public ManagerService( ApplicationDbContext _dbContext)
         {
-            repo = _repo;
+           
+            dbContext = _dbContext;
         }
 
         public async Task AddAsync(ManagerViewModel model)
@@ -26,30 +29,28 @@ namespace Calciolandia_Website.Core.Services
             var manager = new Manager()
             {
                 FirstName = model.FirstName,
-                //MiddleName = model.MiddleName,
                 LastName = model.LastName,
                 Age = model.Age,
                 Nationality = model.Nationality,
                 BirthDate = model.BirthDate,
-                //Salary = model.Salary,
                 ContractSignedDate = model.ContractSignedDate,
                 ContractExpiredDate = model.ContractExpiredDate,
                 ImageUrl = model.ImageUrl,
                 FootballClubId = model.FootballClubId
             };
 
-            await repo.AddAsync(manager);
-            await repo.SaveChangesAsync();
+            await dbContext.Managers.AddAsync(manager);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var manager = await repo.GetByIdAsync<Manager>(id);
+            var manager = await dbContext.Managers.FindAsync(id);
 
             if (manager != null)
             {
                 manager.IsDeleted = true;
-                await repo.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
         }
 
@@ -57,20 +58,19 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<ManagerViewModel>> GetAllAsync()
         {
-            var entities = await repo.AllReadonly<Manager>()
+            var entities = await dbContext.Managers
                 .Where(m => m.IsDeleted == false)
+                .AsNoTracking()
                 .ToListAsync();
 
             return entities.Select(m => new ManagerViewModel()
             {
                 Id = m.Id,
                 FirstName = m.FirstName,
-                //MiddleName = m.MiddleName,
                 LastName = m.LastName,
                 Age = m.Age,
                 Nationality =  m.Nationality,
                 BirthDate = m.BirthDate,
-                //Salary = m.Salary,
                 ContractSignedDate = m.ContractSignedDate,
                 ContractExpiredDate = m.ContractExpiredDate,
                 ImageUrl = m.ImageUrl,
@@ -81,14 +81,15 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<FootballClub>> GetFootballClubsAsync()
         {
-            return await repo.All<FootballClub>()
+            return await dbContext.FootballClubs
                 .Where(f => f.IsDeleted == false)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<ManagerViewModel> GetForEditAsync(Guid id)
         {
-            var manager = await repo.GetByIdAsync<Manager>(id);
+            var manager = await dbContext.Managers.FindAsync(id);
 
             var model = new ManagerViewModel()
             {
@@ -109,7 +110,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task EditAsync(ManagerViewModel model)
         {
-            var manager = await repo.GetByIdAsync<Manager>(model.Id);
+            var manager = await dbContext.Managers.FindAsync(model.Id);
 
             manager.FirstName = model.FirstName;
             manager.LastName = model.LastName;
@@ -121,12 +122,12 @@ namespace Calciolandia_Website.Core.Services
             manager.ImageUrl = model.ImageUrl;
             manager.FootballClubId = model.FootballClubId;
 
-            await repo.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<ManagerInfoViewModel> GetManagerById(Guid id)
         {
-            var manager = await repo.GetByIdAsync<Manager>(id);
+            var manager = await dbContext.Managers.FindAsync(id);
 
             var model = new ManagerInfoViewModel()
             { 

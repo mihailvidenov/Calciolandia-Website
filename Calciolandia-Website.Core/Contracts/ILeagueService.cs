@@ -18,7 +18,5 @@ namespace Calciolandia_Website.Core.Contracts
         Task EditAsync(LeagueViewModel model);
 
         Task DeleteAsync(int id);
-
-        //Task<LeagueViewModel> GetByIdAsync(int id);
     }
 }

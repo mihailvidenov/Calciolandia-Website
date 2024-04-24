@@ -1,4 +1,5 @@
 ﻿using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data;
 using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
@@ -15,11 +16,12 @@ namespace Calciolandia_Website.Core.Services
     public class FixtureService : IFixtureService
     {
 
-        private readonly IRepository repo;
+        private readonly ApplicationDbContext dbContext;
 
-        public FixtureService(IRepository _repo)
+        public FixtureService( ApplicationDbContext _dbContext)
         {
-            repo = _repo;
+            
+            dbContext = _dbContext;
         }
         public async Task AddAsync(AddFixtureViewModel model)
         {
@@ -36,25 +38,25 @@ namespace Calciolandia_Website.Core.Services
                 LeagueId = model.LeagueId
             };
 
-            await repo.AddAsync(fixture);
-            await repo.SaveChangesAsync();
+            await dbContext.Fixtures.AddAsync(fixture);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var fixture = await repo.GetByIdAsync<Fixture>(id);
+            var fixture = await dbContext.Fixtures.FirstAsync(f => f.Id == id);
 
             if (fixture != null)
             {
                 fixture.IsDeleted = true;
 
-                await repo.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
         }
 
         public async Task EditAsync(AddFixtureViewModel model)
         {
-            var fixture = await repo.GetByIdAsync<Fixture>(model.Id);
+            var fixture = await dbContext.Fixtures.FirstAsync(f => f.Id == model.Id);
 
             fixture.Result = model.Result;
             fixture.Season = model.Season;
@@ -65,34 +67,18 @@ namespace Calciolandia_Website.Core.Services
             fixture.StadiumId = model.StadiumId;
             fixture.LeagueId = model.LeagueId;
 
-            await repo.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
 
         public async Task<IEnumerable<GetFixtureViewModel>> GetAllFixturesByLeague(int id)
         {
-            var entities =  await repo.AllReadonly<Fixture>()
+            var entities =  await dbContext.Fixtures
                  .Where(f => f.IsDeleted == false && f.LeagueId == id)
+                 .AsNoTracking()
                  .ToListAsync();
 
-        //    return  entities
-        //      .Select(e => new GetFixtureViewModel()
-        //      {
-        //          Id = e.Id,
-        //          Result = e.Result,
-        //          Season = e.Season,
-        //          Date = e.Date.ToString("dd/MM/yyyy",
-        //          CultureInfo.InvariantCulture),
-        //          Time = e.Time,
-        //          HomeTeamId = e.HomeTeamId,
-        //          AwayTeamid = e.AwayTeamId,
-        //          StadiumId = e.StadiumId,
-        //          LeagueId = e.LeagueId,
-        //           HomeTeam = await repo.GetByIdAsync<FootballClub>(e.HomeTeamId),
-        //    AwayTeam = await repo.GetByIdAsync<FootballClub>(e.AwayTeamid),
-        //   Stadium = await repo.GetByIdAsync<Stadium>(e.StadiumId),
-        //    League = await repo.GetByIdAsync<League>(e.LeagueId),
-        //});
+       
 
             var fixtures = new List<GetFixtureViewModel>();
 
@@ -112,10 +98,10 @@ namespace Calciolandia_Website.Core.Services
                     LeagueId = entity.LeagueId
                 };
 
-                fixture.HomeTeam = await repo.GetByIdAsync<FootballClub>(entity.HomeTeamId);
-                fixture.AwayTeam = await repo.GetByIdAsync<FootballClub>(entity.AwayTeamId);
-                fixture.Stadium = await repo.GetByIdAsync<Stadium>(entity.Stadium);
-                fixture.League = await repo.GetByIdAsync<League>(entity.League);
+                fixture.HomeTeam = await dbContext.FootballClubs.FindAsync(entity.HomeTeamId);
+                fixture.AwayTeam = await dbContext.FootballClubs.FindAsync(entity.AwayTeamId);
+                fixture.Stadium = await dbContext.Stadiums.FindAsync(entity.StadiumId);
+                fixture.League = await dbContext.Leagues.FindAsync(entity.LeagueId);
 
                 fixtures.Add(fixture);
             }
@@ -128,8 +114,9 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<FixtureViewModel>> GetAllFixturesByRound(int round)
         {
-            var entities =  await repo.AllReadonly<FixtureViewModel>()
+            var entities =  await dbContext.Fixtures
                 .Where(f => f.IsDeleted == false && f.Round == round)
+                .AsNoTracking()
                 .ToListAsync();
 
             return entities
@@ -151,7 +138,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<GetFixtureViewModel> GetFixtureAsync(Guid id)
         {
-            var fixture = await repo.GetByIdAsync<Fixture>(id);
+            var fixture = await dbContext.Fixtures.FindAsync(id);
 
             var model = new GetFixtureViewModel()
             {
@@ -167,10 +154,10 @@ namespace Calciolandia_Website.Core.Services
                 LeagueId = fixture.LeagueId
             };
 
-            model.HomeTeam = await repo.GetByIdAsync<FootballClub>(model.HomeTeamId);
-            model.AwayTeam = await repo.GetByIdAsync<FootballClub>(model.AwayTeamid);
-            model.Stadium = await repo.GetByIdAsync<Stadium>(model.StadiumId);
-            model.League = await repo.GetByIdAsync<League>(model.LeagueId);
+            model.HomeTeam = await dbContext.FootballClubs.FindAsync(model.HomeTeamId);
+            model.AwayTeam = await dbContext.FootballClubs.FindAsync(model.AwayTeamid);
+            model.Stadium = await dbContext.Stadiums.FindAsync(model.StadiumId);
+            model.League = await dbContext.Leagues.FindAsync(model.LeagueId);
 
             return model;
 
@@ -178,12 +165,12 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<FootballClub>> GetFootballClubsAsync()
         {
-            return await repo.All<FootballClub>().Where(s => s.IsDeleted == false).ToListAsync();
+            return await dbContext.FootballClubs.Where(s => s.IsDeleted == false).ToListAsync();
         }
 
         public async Task<AddFixtureViewModel> GetForEditAsync(Guid id)
         {
-            var fixture = await repo.GetByIdAsync<Fixture>(id);
+            var fixture = await dbContext.Fixtures.FindAsync(id);
 
             var model = new AddFixtureViewModel()
             {
@@ -203,12 +190,12 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<League>> GetLeaguesAsync()
         {
-            return await repo.All<League>().Where(s => s.IsDeleted == false).ToListAsync();
+            return await dbContext.Leagues.Where(s => s.IsDeleted == false).ToListAsync();
         }
 
         public async Task<IEnumerable<Stadium>> GetStadiumsAsync()
         {
-            return await repo.All<Stadium>().Where(s => s.IsDeleted == false).ToListAsync();
+            return await dbContext.Stadiums.Where(s => s.IsDeleted == false).ToListAsync();
         }
     }
 }

@@ -89,12 +89,7 @@ namespace Calciolandia_Website.Core.Data
 
 
 
-            //builder.Entity<IdentityUserRole<string>>(entity =>
-            //{
-            //    entity.ToTable(name: "AspNetUserRoles");
-            //    entity.HasKey(r => new { r.RoleId, r.UserId });
-            //});
-
+            
 
 
             if (this.seedDb)

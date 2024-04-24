@@ -18,10 +18,7 @@ namespace Calciolandia_Website.Core.Models
         [StringLength(20, MinimumLength = 3)]
         public string FirstName { get; set; } = null!;
 
-        //[Required]
-        //[StringLength(20)]
-        //public string MiddleName { get; set; } = null!;
-
+        
         [Required]
         [StringLength(20, MinimumLength = 3)]
         public string LastName { get; set; } = null!;
@@ -42,8 +39,7 @@ namespace Calciolandia_Website.Core.Models
         [Required]
         public DateTime ContractExpiredDate { get; set; }
 
-        //[Required]
-        //public decimal Salary { get; set; }
+      
 
         [Required]
         [StringLength(50, MinimumLength = 3)]

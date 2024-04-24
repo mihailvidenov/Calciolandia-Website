@@ -1,5 +1,4 @@
-﻿using Calciolandia_Website.Core.Constants;
-using Calciolandia_Website.Core.Contracts;
+﻿using Calciolandia_Website.Core.Contracts;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -128,23 +127,6 @@ namespace Calciolandia_Website.Controllers
         }
 
         
-        //public async Task<IActionResult> CreateRoles()
-        //{
-        //    await roleManager.CreateAsync(new IdentityRole<Guid>(RoleConstants.Admin));
-
-        //    return RedirectToAction("Index", "Home");
-        //}
-
-        
-        //public async Task<IActionResult> AddUsersToRoles()
-        //{
-        //    string email = "m_fvidenov@abv.bg";
-
-        //    var user = await userManager.FindByEmailAsync(email);
-
-        //    await userManager.AddToRoleAsync(user, RoleConstants.Admin);
-
-        //    return RedirectToAction("Index", "Home");
-        //}
+       
     }
 }

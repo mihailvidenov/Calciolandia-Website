@@ -17,12 +17,6 @@ namespace Calciolandia_Website.Areas.Admin.Controllers
 			managerService = _managerService;
 		}
 
-		//public async Task<IActionResult> Index()
-		//{
-		//    //var model = await managerService.GetAllAsync();
-
-		//    //return View(model);
-		//}
 
 		[HttpGet]
 		public async Task<IActionResult> Add()

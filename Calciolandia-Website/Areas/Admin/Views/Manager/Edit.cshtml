@@ -15,11 +15,7 @@
                 <input asp-for="@Model.FirstName" class="form-control" aria-required="true" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            @*<div class="mb-3">
-            <label asp-for="@Model.MiddleName" class="form-label">Middle Name</label>
-            <input asp-for="@Model.MiddleName" class="form-control" aria-required="true" />
-            <span asp-validation-for="MiddleName" class="text-danger"></span>
-            </div>*@
+           
             <div class="mb-3">
                 <label asp-for="@Model.LastName" class="form-label text-light">Last Name</label>
                 <input asp-for="@Model.LastName" class="form-control" aria-required="true" />
@@ -45,11 +41,7 @@
                 <input asp-for="@Model.BirthDate" class="form-control" type="date" aria-required="true" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
-            @*<div class="mb-3">
-            <label asp-for="@Model.Salary" class="form-label">Salary</label>
-            <input asp-for="@Model.Salary" class="form-control" value="" />
-            <span asp-validation-for="Salary" class="text-danger"></span>
-            </div>*@
+           
             <div class="mb-3">
                 <label asp-for="@Model.ContractSignedDate" class="form-label text-light">Contract signed date</label>
                 <input asp-for="@Model.ContractSignedDate" class="form-control" type="date" aria-required="true" />

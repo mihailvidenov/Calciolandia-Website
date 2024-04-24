@@ -1,21 +1,15 @@
-﻿using Calciolandia_Website.Core.Models;
+﻿using Calciolandia_Website.Areas.Admin;
+using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Calciolandia_Website.Areas.Admin;
-using System.Net.Mail;
 
 namespace Calciolandia_Website.Controllers
 {
     [AllowAnonymous]
     public class HomeController : BaseController
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
+       
 
         public IActionResult Index()
         {

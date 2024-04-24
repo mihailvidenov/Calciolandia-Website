@@ -1,4 +1,5 @@
 ﻿using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data;
 using Calciolandia_Website.Core.Data.Common;
 using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
@@ -16,11 +17,13 @@ namespace Calciolandia_Website.Core.Services
     public class StadiumService : IStadiumService
     {
 
-        private readonly IRepository repo;
+        
+        private readonly ApplicationDbContext dbContext;
 
-        public StadiumService(IRepository _repo)
+        public StadiumService(ApplicationDbContext _dbContext)
         {
-            repo = _repo;
+           
+            dbContext = _dbContext;
         }
         public async Task AddAsync(StadiumViewModel model)
         {
@@ -33,19 +36,19 @@ namespace Calciolandia_Website.Core.Services
                 City = model.City
             };
 
-            await repo.AddAsync(stadium);
-            await repo.SaveChangesAsync();
+            await dbContext.Stadiums.AddAsync(stadium);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var stadium = await repo.GetByIdAsync<Stadium>(id);
+            var stadium = await dbContext.Stadiums.FindAsync(id);
 
             if (stadium != null)
             {
                 stadium.IsDeleted = true;
 
-                await repo.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
 
 
@@ -55,8 +58,10 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<IEnumerable<StadiumViewModel>> GetAllAsync()
         {
-            var entities = await repo.AllReadonly<Stadium>()
-                .Where(s => s.IsDeleted == false).ToListAsync();
+            var entities = await dbContext.Stadiums
+                .Where(s => s.IsDeleted == false)
+                .AsNoTracking()
+                .ToListAsync();
 
             return entities.Select(s => new StadiumViewModel()
             {
@@ -71,7 +76,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task<StadiumViewModel> GetForEditAsync(int id)
         {
-            var stadium = await repo.GetByIdAsync<Stadium>(id);
+            var stadium = await dbContext.Stadiums.FindAsync(id);
 
             var model = new StadiumViewModel()
             {
@@ -88,7 +93,7 @@ namespace Calciolandia_Website.Core.Services
 
         public async Task EditAsync(StadiumViewModel model)
         {
-            var stadium = await repo.GetByIdAsync<Stadium>(model.Id);
+            var stadium = await dbContext.Stadiums.FindAsync(model.Id);
 
             stadium.Name = model.Name;
             stadium.Capacity = model.Capacity;
@@ -96,12 +101,12 @@ namespace Calciolandia_Website.Core.Services
             stadium.Address = model.Address;
             stadium.City = model.City;
 
-            await repo.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<StadiumViewModel> GetStadiumById(int id)
         {
-            var stadium = await repo.GetByIdAsync<Stadium>(id);
+            var stadium = await dbContext.Stadiums.FindAsync(id);
 
             var model = new StadiumViewModel()
             {

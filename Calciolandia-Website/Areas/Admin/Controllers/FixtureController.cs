@@ -51,7 +51,7 @@ namespace Calciolandia_Website.Areas.Admin.Controllers
             {
                 await fixtureService.AddAsync(model);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {
