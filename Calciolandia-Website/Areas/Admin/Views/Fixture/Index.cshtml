@@ -9,8 +9,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col" class="text-light">Logo</th>
-                <th scope="col" class="text-light">Name</th>
+                
                 <th class="text-light"></th>
 
             </tr>
@@ -19,21 +18,21 @@
             @foreach (var fixture in Model)
             {
                  <tr>
-                    <td><h5 class="text-light">@fixture.Date</h5></td>
-                    <td><h5 class="text-light">@fixture.Time</h5></td>
+                    <td><h5 class="text-dark">@fixture.Date</h5></td>
+                    <td><h5 class="text-dark">@fixture.Time</h5></td>
                    
-                        <td><h5 class="text-light">@fixture.HomeTeam.Name</h5></td>
+                        <td><h5 class="text-dark">@fixture.HomeTeam.Name</h5></td>
                         <td>
                             <img style="width: 4rem;" src="@fixture.HomeTeam.LogoImageUrl" alt="Football Club Image">
                         </td>
-                       
-                    
-                    <td><h5 class="text-light">@fixture.Result</h5></td>
+
+
+                    <td><h5 class="text-dark">@fixture.Result</h5></td>
                     
                         <td>
                             <img style="width: 4rem;" src="@fixture.AwayTeam.LogoImageUrl" alt="Football Club Image">
                         </td>
-                        <td><h5 class="text-light">@fixture.AwayTeam.Name</h5></td>
+                    <td><h5 class="text-dark">@fixture.AwayTeam.Name</h5></td>
                     
 
                     <td>

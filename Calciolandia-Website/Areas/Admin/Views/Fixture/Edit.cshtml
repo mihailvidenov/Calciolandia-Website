@@ -4,40 +4,40 @@
     ViewBag.Title = "Edit Fixture";
 }
 
-<h2 class="text-center text-light">@ViewBag.Title</h2>
+<h2 class="text-center text-dark">@ViewBag.Title</h2>
 <hr />
 
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form method="post">
             <div class="mb-3">
-                <label asp-for="@Model.Result" class="form-label text-light">Result</label>
+                <label asp-for="@Model.Result" class="form-label text-dark">Result</label>
                 <input asp-for="@Model.Result" class="form-control" aria-required="true" />
                 <span asp-validation-for="Result" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.Round" class="form-label text-light">Round</label>
+                <label asp-for="@Model.Round" class="form-label text-dark">Round</label>
                 <input asp-for="@Model.Round" class="form-control" aria-required="true" />
                 <span asp-validation-for="Round" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.Season" class="form-label text-light">Season</label>
+                <label asp-for="@Model.Season" class="form-label text-dark">Season</label>
                 <input asp-for="@Model.Season" class="form-control" aria-required="true" />
                 <span asp-validation-for="Season" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.Date" class="form-label text-light">Date</label>
+                <label asp-for="@Model.Date" class="form-label text-dark">Date</label>
                 <input asp-for="@Model.Date" class="form-control" aria-required="true" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="@Model.Time" class="form-label text-light">Time</label>
+                <label asp-for="@Model.Time" class="form-label text-dark">Time</label>
                 <input asp-for="@Model.Time" class="form-control" aria-required="true" />
                 <span asp-validation-for="Time" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.HomeTeamId" class="form-label text-light">Home Team</label>
+                <label asp-for="@Model.HomeTeamId" class="form-label text-dark">Home Team</label>
                 <select asp-for="@Model.HomeTeamId" class="form-control">
                     @foreach (var homeTeam in Model.HomeTeams)
                     {
@@ -47,7 +47,7 @@
                 <span asp-validation-for="HomeTeamId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.AwayTeamId" class="form-label text-light">Away Team</label>
+                <label asp-for="@Model.AwayTeamId" class="form-label text-dark">Away Team</label>
                 <select asp-for="@Model.AwayTeamId" class="form-control">
                     @foreach (var awayTeam in Model.AwayTeams)
                     {
@@ -57,7 +57,7 @@
                 <span asp-validation-for="AwayTeamId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.LeagueId" class="form-label text-light">League</label>
+                <label asp-for="@Model.LeagueId" class="form-label text-dark">League</label>
                 <select asp-for="@Model.LeagueId" class="form-control">
                     @foreach (var league in Model.Leagues)
                     {
@@ -67,7 +67,7 @@
                 <span asp-validation-for="LeagueId" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.StadiumId" class="form-label text-light">Stadium</label>
+                <label asp-for="@Model.StadiumId" class="form-label text-dark">Stadium</label>
                 <select asp-for="@Model.StadiumId" class="form-control">
                     @foreach (var stadium in Model.Stadiums)
                     {
