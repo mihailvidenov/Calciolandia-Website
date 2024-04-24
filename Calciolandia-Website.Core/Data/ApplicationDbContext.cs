@@ -8,9 +8,21 @@ namespace Calciolandia_Website.Core.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+
+        private bool seedDb;
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, bool seed = true)
             : base(options)
         {
+            if (this.Database.IsRelational())
+            {
+                this.Database.Migrate();
+            }
+            else
+            {
+                this.Database.EnsureCreated();
+            }
+
+            this.seedDb = seed; 
         }
 
         public DbSet<FootballClub> FootballClubs { get; set; }
@@ -85,16 +97,19 @@ namespace Calciolandia_Website.Core.Data
 
 
 
-            builder.ApplyConfiguration(new LeagueConfiguration());
-            builder.ApplyConfiguration(new StadiumConfiguration());
-            builder.ApplyConfiguration(new FootballClubConfiguration());
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new ManagerConfiguration());
-            builder.ApplyConfiguration(new PlayerConfiguration());
-            builder.ApplyConfiguration(new PresidentConfiguration());
-            builder.ApplyConfiguration(new RoleConfiguration());
-            builder.ApplyConfiguration(new UserRoleConfiguration());
-            builder.ApplyConfiguration(new FixtureConfiguration());
+            if (this.seedDb)
+            {
+                builder.ApplyConfiguration(new LeagueConfiguration());
+                builder.ApplyConfiguration(new StadiumConfiguration());
+                builder.ApplyConfiguration(new FootballClubConfiguration());
+                builder.ApplyConfiguration(new UserConfiguration());
+                builder.ApplyConfiguration(new ManagerConfiguration());
+                builder.ApplyConfiguration(new PlayerConfiguration());
+                builder.ApplyConfiguration(new PresidentConfiguration());
+                builder.ApplyConfiguration(new RoleConfiguration());
+                builder.ApplyConfiguration(new UserRoleConfiguration());
+                builder.ApplyConfiguration(new FixtureConfiguration());
+            }
 
         }
     }
