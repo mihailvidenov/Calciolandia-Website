@@ -28,6 +28,8 @@ namespace Calciolandia_Website.Core.Contracts
 
         Task<IEnumerable<Player>> GetPlayersByFootballClub(int id);
 
+        Task<IEnumerable<Fixture>> GetFixturesByFootballClub(int id);
+
         Task<IEnumerable<Manager>> GetManagersByFootballClub(int id);
 
         Task<IEnumerable<President>> GetPresidentByFootballClub(int id);

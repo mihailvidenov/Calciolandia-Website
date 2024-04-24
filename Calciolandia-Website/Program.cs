@@ -35,6 +35,7 @@ builder.Services.AddScoped<IFootballClubService, FootballClubService>();
 builder.Services.AddScoped<IManagerService, ManagerService>();
 builder.Services.AddScoped<IPresidentService, PresidentService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
+builder.Services.AddScoped<IFixtureService, FixtureService>();
 
 
 builder.Services.AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN");

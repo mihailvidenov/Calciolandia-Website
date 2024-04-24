@@ -10,20 +10,30 @@ namespace Calciolandia_Website.Core.Contracts
 {
     public interface IFixtureService
     {
-        Task<IEnumerable<FixtureViewModel>> GetAllByLeagueAsync(int id);
+       
 
-        Task<IEnumerable<FixtureViewModel>> GetAllByRoundAsync(int round);
-
-        Task<IEnumerable<FixtureViewModel>> GetAllByFootballClubAsync(int id);
 
         Task DeleteAsync(Guid id);
 
-        Task AddAsync(FixtureViewModel model);
+        Task AddAsync(AddFixtureViewModel model);
 
-        Task<FixtureViewModel> GetForEditAsync(Guid id);
+        Task<AddFixtureViewModel> GetForEditAsync(Guid id);
 
-        Task EditAsync(FixtureViewModel model);
+        Task EditAsync(AddFixtureViewModel model);
 
         Task<GetFixtureViewModel> GetFixtureAsync(Guid id);
+
+        Task<IEnumerable<FixtureViewModel>> GetAllFixturesByRound(int round);
+
+        Task<IEnumerable<GetFixtureViewModel>> GetAllFixturesByLeague(int id);
+
+
+        Task<IEnumerable<Stadium>> GetStadiumsAsync();
+
+        Task<IEnumerable<League>> GetLeaguesAsync();
+
+        Task<IEnumerable<FootballClub>> GetFootballClubsAsync();
+
+
     }
 }

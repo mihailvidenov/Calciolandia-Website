@@ -15,7 +15,8 @@ namespace Calciolandia_Website.Core.Data.Models
             this.Players = new List<Player>();
             this.Presidents = new List<President>();
             this.Managers = new List<Manager>();
-            this.Fixtures = new List<Fixture>();
+            this.HomeFixtures = new List<Fixture>();
+            this.AwayFixtures = new List<Fixture>();
         }
 
         [Key]
@@ -65,6 +66,7 @@ namespace Calciolandia_Website.Core.Data.Models
 
         public List<President> Presidents { get; set; } = null!;
 
-        public List<Fixture> Fixtures { get; set; } = null!;
+        public List<Fixture> HomeFixtures { get; set; } = null!;
+        public List<Fixture> AwayFixtures { get; set; } = null!;
     }
 }

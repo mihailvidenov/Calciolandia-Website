@@ -1,7 +1,6 @@
 ﻿using Calciolandia_Website.Core.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Calciolandia_Website.Core.Models
 {
-    public class FixtureViewModel
+    public class AddFixtureViewModel
     {
         [Key]
         public Guid Id { get; set; }
@@ -32,17 +31,17 @@ namespace Calciolandia_Website.Core.Models
         public string Time { get; set; }
         public int? HomeTeamId { get; set; }
 
-        public FootballClub HomeTeams { get; set; } 
+        public IEnumerable<FootballClub> HomeTeams { get; set; } = new List<FootballClub>();
 
         public int? AwayTeamId { get; set; }
 
-        public FootballClub AwayTeams { get; set; }
+        public IEnumerable<FootballClub> AwayTeams { get; set; } = new List<FootballClub>();
         public int? StadiumId { get; set; }
 
-        public Stadium Stadium { get; set; } 
+        public IEnumerable<Stadium> Stadiums { get; set; } = new List<Stadium>();
 
         public int? LeagueId { get; set; }
 
-        public League Leagues { get; set; } 
+        public IEnumerable<League> Leagues { get; set; } = new List<League>();
     }
 }

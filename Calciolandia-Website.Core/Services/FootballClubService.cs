@@ -171,5 +171,13 @@ namespace Calciolandia_Website.Core.Services
                 .Where(s => s.IsDeleted == false && s.FootballClubs.Any((fc => fc.Id == id)))
                 .ToListAsync();
         }
-    }
+
+        public async Task<IEnumerable<Fixture>> GetFixturesByFootballClub(int id)
+        {
+            return await repo.AllReadonly<Fixture>()
+                .Where(f => f.IsDeleted == false && (f.HomeTeamId == id || f.AwayTeamId == id)).ToListAsync();
+
+
+        }
+    } 
 }

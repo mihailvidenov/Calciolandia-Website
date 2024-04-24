@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Calciolandia_Website.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240415151316_SeedDb")]
+    [Migration("20240422214047_SeedDb")]
     partial class SeedDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,7 +110,7 @@ namespace Calciolandia_Website.Core.Migrations
                         {
                             Id = new Guid("35e824bf-a9ff-4dfa-9cd7-e0bb181ee50a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d218c484-a3e4-478f-85d7-918e0689592c",
+                            ConcurrencyStamp = "bd06493c-2941-478a-b347-af64542cf964",
                             Email = "m_fvidenov@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Mihail",
@@ -119,9 +119,9 @@ namespace Calciolandia_Website.Core.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "m_fvidenov@abv.bg",
                             NormalizedUserName = "mishaka002",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHRpevlGNv+im53ROtN46AKfCZ0pyk7NoqRLuzmyL9imXK6CGasukDe2b/MJrUAL0w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEWysyqrve35NRkGyOn0/x03Ray5XPUWZ92oubGpp1k/9IcO+j513QYhgBSZhVOqXw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "35ed46ee-1769-45e3-9423-1220a3e00937",
+                            SecurityStamp = "425a98be-1b21-4136-b1ca-f0c8e6ba4c80",
                             TwoFactorEnabled = false,
                             UserName = "mishaka002"
                         },
@@ -129,7 +129,7 @@ namespace Calciolandia_Website.Core.Migrations
                         {
                             Id = new Guid("37390eb1-f3f7-45ee-835f-9712488e3aa5"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "488d0f22-e1a6-4991-8555-3bcab20a52f1",
+                            ConcurrencyStamp = "aa5ad2d1-b7d3-4cfc-91d5-22b9da383f0a",
                             Email = "luben_6@abv.bg",
                             EmailConfirmed = true,
                             FirstName = "Luben",
@@ -138,11 +138,101 @@ namespace Calciolandia_Website.Core.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "luben_6@abv.bg",
                             NormalizedUserName = "luben_v",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPBfPiwyGlZSNxdm+JPx0g5h/m1NM7G0/QyEuvj+jh0B9UamUI/3xKUXL6gatTMU2Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBWdVtqgpMxdSmWyX+1Ot0dlsY/bFmI+9xidYWATDiDVd5PoCRsTOZF3pxBQUA/vlQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8e479450-eaa6-4ddd-bd0f-80b8418c2ca3",
+                            SecurityStamp = "044c46a9-07a6-4b16-9707-28bb221d472f",
                             TwoFactorEnabled = false,
                             UserName = "luben_v"
+                        });
+                });
+
+            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Fixture", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("AwayTeamId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("HomeTeamId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("LeagueId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("Round")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Season")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("StadiumId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AwayTeamId");
+
+                    b.HasIndex("HomeTeamId");
+
+                    b.HasIndex("LeagueId");
+
+                    b.HasIndex("StadiumId");
+
+                    b.ToTable("Fixtures");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("43a79872-0c0a-4fd6-9675-7198708ce662"),
+                            AwayTeamId = 11,
+                            Date = new DateTime(2024, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HomeTeamId = 7,
+                            IsDeleted = false,
+                            LeagueId = 1,
+                            Result = "0 - 1",
+                            Round = 33,
+                            Season = "2023/2024",
+                            StadiumId = 9,
+                            Time = "19:30"
+                        },
+                        new
+                        {
+                            Id = new Guid("38130c98-accb-4e0a-818a-5f47d2b08dc9"),
+                            AwayTeamId = 10,
+                            Date = new DateTime(2024, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HomeTeamId = 3,
+                            IsDeleted = false,
+                            LeagueId = 1,
+                            Result = "2 - 2",
+                            Round = 33,
+                            Season = "2023/2024",
+                            StadiumId = 5,
+                            Time = "21:45"
                         });
                 });
 
@@ -599,7 +689,7 @@ namespace Calciolandia_Website.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b058c585-5d3e-4211-8d6a-ea2938360418"),
+                            Id = new Guid("7596dcb1-be28-4810-894f-0d108c4746ad"),
                             Age = 57,
                             BirthDate = new DateTime(1965, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2025, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -613,7 +703,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9329eae6-8c15-498d-8d93-4337977b9a4d"),
+                            Id = new Guid("0343df0b-cf7b-4ea1-b22e-b5d1b37d6b01"),
                             Age = 55,
                             BirthDate = new DateTime(1968, 10, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -627,7 +717,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b6f3ff15-f349-4b29-93a1-fe011ee9df12"),
+                            Id = new Guid("db0ccb79-686a-4756-b769-46a7291d781f"),
                             Age = 55,
                             BirthDate = new DateTime(1967, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2025, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -641,7 +731,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7e174150-46d8-4212-a277-71bcf48533ca"),
+                            Id = new Guid("ed8a8072-57bd-4e2a-a751-1b4550228ab9"),
                             Age = 47,
                             BirthDate = new DateTime(1976, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -655,7 +745,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("972b0b8b-8eaa-423d-bbff-1f7e8c1e535c"),
+                            Id = new Guid("c91969c6-bcfa-48ae-8795-908277ae4abf"),
                             Age = 65,
                             BirthDate = new DateTime(1958, 1, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -669,7 +759,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9c317d80-2087-4057-ad68-ac4daffcfa90"),
+                            Id = new Guid("188a7590-3b45-40a5-bc4c-e660369bc2e5"),
                             Age = 40,
                             BirthDate = new DateTime(1983, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -683,7 +773,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("06359a11-1b8e-4d68-8a14-93a9f62df023"),
+                            Id = new Guid("fe1bf65e-e8d6-4e6c-9bd4-552c4f483159"),
                             Age = 45,
                             BirthDate = new DateTime(1977, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -697,7 +787,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("09c15472-4b49-4159-a7e2-2bcbd3574482"),
+                            Id = new Guid("871c26b3-c051-43ce-a662-db5571f69606"),
                             Age = 45,
                             BirthDate = new DateTime(1978, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2025, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -711,7 +801,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8a26d55a-b31e-42cb-9d9f-59b3264fb010"),
+                            Id = new Guid("0ac01812-5943-4e1e-af5a-0296e9dffb73"),
                             Age = 60,
                             BirthDate = new DateTime(1964, 1, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -725,7 +815,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6441b949-99f5-47ec-81cf-88428a68106c"),
+                            Id = new Guid("060dcb8f-8672-4425-b4ea-1cb5786470dc"),
                             Age = 48,
                             BirthDate = new DateTime(1975, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -739,7 +829,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0badfa91-6a6e-473e-ad94-e3fa773ca8f3"),
+                            Id = new Guid("51125581-f439-4f2a-aa8c-2ea1e001df3c"),
                             Age = 40,
                             BirthDate = new DateTime(1982, 8, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -753,7 +843,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e6c70dea-5f3f-4649-9f1e-7044458e91e3"),
+                            Id = new Guid("53c51138-aa94-4f3f-8e1b-c26a45d28f69"),
                             Age = 39,
                             BirthDate = new DateTime(1984, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -767,7 +857,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("43ab269e-5d82-4597-b48a-8d30242eb9db"),
+                            Id = new Guid("26c069ee-17cc-4f2c-8d80-88658cf99b3e"),
                             Age = 61,
                             BirthDate = new DateTime(1962, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -781,7 +871,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d6b7d86d-9e3d-4c59-87da-dd61b04cea25"),
+                            Id = new Guid("53e492a8-c95d-4b01-bc24-79c63939233c"),
                             Age = 41,
                             BirthDate = new DateTime(1982, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2025, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -795,7 +885,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9036b20d-a358-45a8-b365-c650bfbc4f1e"),
+                            Id = new Guid("fbb1b90a-a685-4120-ab28-858978bbd2a1"),
                             Age = 56,
                             BirthDate = new DateTime(1967, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -809,7 +899,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("684cc1a8-aba9-468f-9064-50cf93dc38b6"),
+                            Id = new Guid("a72e3e49-4099-46e3-a389-8d1dae6c1961"),
                             Age = 51,
                             BirthDate = new DateTime(1973, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -823,7 +913,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ac6a9d0b-0ed7-40f5-8fe0-c403678a4682"),
+                            Id = new Guid("64637af9-4047-4840-b202-a855a9414bc1"),
                             Age = 59,
                             BirthDate = new DateTime(1963, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -837,7 +927,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fe23bdcb-7edf-4ce1-9507-60939a62ed78"),
+                            Id = new Guid("d6981722-772b-44c0-acf2-8ef5f411ea4c"),
                             Age = 71,
                             BirthDate = new DateTime(1951, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2025, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -851,7 +941,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("972c4f08-af5d-4272-bcb4-4b21fb3b2fae"),
+                            Id = new Guid("c2fc6829-ee9e-4f13-86aa-f5b858f5d792"),
                             Age = 53,
                             BirthDate = new DateTime(1969, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -865,7 +955,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("20a2ca55-015e-495e-8625-c33835279de5"),
+                            Id = new Guid("10b38ca7-9319-49c4-93a8-b49a371083b6"),
                             Age = 47,
                             BirthDate = new DateTime(1975, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -946,7 +1036,7 @@ namespace Calciolandia_Website.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2d6ec059-3f59-4caf-873a-55eb0119a5e1"),
+                            Id = new Guid("721d0eb7-e122-425b-a808-33bb10a1493a"),
                             Age = 28,
                             BirthDate = new DateTime(1995, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -963,7 +1053,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7ddc6035-0f42-4b50-9d31-8ec50599f238"),
+                            Id = new Guid("75e2d346-b8ad-4aa0-bfd2-33d3f6a83f55"),
                             Age = 31,
                             BirthDate = new DateTime(1992, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2027, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -980,7 +1070,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cd5c47a9-c5ec-49e8-9473-82dd0e99979c"),
+                            Id = new Guid("848e40e2-7ddf-4642-990c-6767b488120f"),
                             Age = 40,
                             BirthDate = new DateTime(1983, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -997,7 +1087,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4e95973f-49ed-4d57-9f80-86bb887163da"),
+                            Id = new Guid("1ea4137b-c356-403e-915a-926f52057afc"),
                             Age = 25,
                             BirthDate = new DateTime(1997, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2027, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1014,7 +1104,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("58a03745-8249-432c-836b-b24ba69805dc"),
+                            Id = new Guid("10c6c12d-1b35-42bc-802a-6e88e84acd11"),
                             Age = 23,
                             BirthDate = new DateTime(2000, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2027, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1031,7 +1121,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("33cfbefc-5132-41e9-985f-ee9453d70648"),
+                            Id = new Guid("2159a3fc-2173-46da-8960-c4ec703b1154"),
                             Age = 23,
                             BirthDate = new DateTime(2000, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1048,7 +1138,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a532c3d6-c754-4b74-8d9d-cd3c7ca309c6"),
+                            Id = new Guid("76b27127-2c65-47cf-9136-82c9eab274dd"),
                             Age = 29,
                             BirthDate = new DateTime(1994, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2025, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1065,7 +1155,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("18f68436-ad9f-4659-909a-03cb28a147b8"),
+                            Id = new Guid("18faea62-bacf-43d0-bc27-91ebe995b3d1"),
                             Age = 32,
                             BirthDate = new DateTime(1991, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1082,7 +1172,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("28a4fc6c-6fd3-48d6-a157-4f927703e115"),
+                            Id = new Guid("9d1abc71-bd4f-4348-9a84-8143aaec879c"),
                             Age = 19,
                             BirthDate = new DateTime(2003, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2027, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1099,7 +1189,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("09a3af60-0bc2-41f6-9461-64eaa5acb913"),
+                            Id = new Guid("afb16257-fa10-451c-8541-591642792273"),
                             Age = 30,
                             BirthDate = new DateTime(1993, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ContractExpiredDate = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1164,7 +1254,7 @@ namespace Calciolandia_Website.Core.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1fe8807f-92e6-4ff0-967c-828ecc314145"),
+                            Id = new Guid("f5c3e91e-4ab4-436e-a6b9-a31da4bb1da5"),
                             Age = 76,
                             BirthDate = new DateTime(1946, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Paolo",
@@ -1176,7 +1266,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("51da2fdb-f426-4ee8-ac2f-61742657f50a"),
+                            Id = new Guid("9d8c7686-078a-4199-af4c-5678e6e1b19a"),
                             Age = 74,
                             BirthDate = new DateTime(1949, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Aurelio",
@@ -1188,7 +1278,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("106d838d-410f-4b90-843d-62a589054401"),
+                            Id = new Guid("01e8d9f6-9cb8-41dd-a56a-b2689ea8ae63"),
                             Age = 59,
                             BirthDate = new DateTime(1963, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Gianluca",
@@ -1200,7 +1290,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f6335916-2e6c-466f-86ce-4b1555e0ce2d"),
+                            Id = new Guid("9292d3e2-9cdf-4e6a-b646-1de9a5023e40"),
                             Age = 58,
                             BirthDate = new DateTime(1965, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Dan",
@@ -1212,7 +1302,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7288f208-c722-4f42-a8cc-e76eaaf98b25"),
+                            Id = new Guid("4f65253e-9756-4fdc-a7be-85e82456bd4c"),
                             Age = 31,
                             BirthDate = new DateTime(1991, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Steven",
@@ -1224,7 +1314,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3d3866ed-9cbf-4e5b-add0-0bc786eaf034"),
+                            Id = new Guid("1eb8cc36-c42c-45fd-8c12-2f1f6a6422e9"),
                             Age = 70,
                             BirthDate = new DateTime(1953, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Antonio",
@@ -1236,7 +1326,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e5fc55d0-7354-4856-abf0-0b478fbc9fb8"),
+                            Id = new Guid("06b45893-172c-4f65-82b9-7d1aa2b6a207"),
                             Age = 73,
                             BirthDate = new DateTime(1949, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Rocco",
@@ -1248,7 +1338,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("46aaa8d3-7b7b-44b3-8f48-08654feb57ac"),
+                            Id = new Guid("5eea96dc-9ca6-4ec4-b269-7fe6a1fda61d"),
                             Age = 66,
                             BirthDate = new DateTime(1957, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Claudio",
@@ -1260,7 +1350,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c95b95de-b569-46dc-b4d1-1a6ea1b11187"),
+                            Id = new Guid("7a16dca4-ee2c-4512-ac46-b1085e84a569"),
                             Age = 66,
                             BirthDate = new DateTime(1957, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Urbano",
@@ -1272,7 +1362,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e35cb67a-49b6-4631-93ca-4bc7f3fa228f"),
+                            Id = new Guid("cb01a8b3-47e9-4d31-8a87-de45df1122c2"),
                             Age = 72,
                             BirthDate = new DateTime(1951, 8, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Carlo",
@@ -1284,7 +1374,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("aad00937-c629-4a4e-b078-582ecc17b60b"),
+                            Id = new Guid("c1539dc0-b2dc-4933-8af4-677f30953802"),
                             Age = 82,
                             BirthDate = new DateTime(1941, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Giampaolo",
@@ -1296,7 +1386,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b9f15c84-f76a-4656-9790-df37b2f454b3"),
+                            Id = new Guid("88a88895-c486-47bb-93e9-a0a8edf135bc"),
                             Age = 58,
                             BirthDate = new DateTime(1964, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Joey",
@@ -1308,7 +1398,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2542fa4d-0464-4370-a02c-625b15fe53bf"),
+                            Id = new Guid("57e1df18-3494-4179-b666-f7f2accc9914"),
                             Age = 73,
                             BirthDate = new DateTime(1949, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Paolo",
@@ -1320,7 +1410,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("bdcf999d-5027-489d-9f89-40b8cfba5f9a"),
+                            Id = new Guid("d18f69d1-4406-4803-b13f-b5c0d390edef"),
                             Age = 45,
                             BirthDate = new DateTime(1978, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Danilo",
@@ -1332,7 +1422,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("609d07e1-8779-499f-86c8-a55cdf92df45"),
+                            Id = new Guid("36ed41b3-f7b5-4391-abe2-1306bcdad666"),
                             Age = 65,
                             BirthDate = new DateTime(1958, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Alberto",
@@ -1344,7 +1434,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d8428001-ae9a-4074-bb41-e13cfe73ff0e"),
+                            Id = new Guid("8f705a22-54ec-4dd1-88d9-69e99e771b4a"),
                             Age = 48,
                             BirthDate = new DateTime(1975, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Saverio",
@@ -1356,7 +1446,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("de9c779b-e42d-490c-b9c2-5e55c7aaeed8"),
+                            Id = new Guid("e8bee67e-e0ed-4789-a308-0b1bf5e6b0b6"),
                             Age = 62,
                             BirthDate = new DateTime(1960, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Fabrizio",
@@ -1368,7 +1458,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8b4ef94d-a1ab-465d-8902-018d6fa145c7"),
+                            Id = new Guid("0b420965-da31-415c-a42f-137d63b449de"),
                             Age = 60,
                             BirthDate = new DateTime(1963, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Maurizio",
@@ -1380,7 +1470,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9f78e5f9-9d80-43f6-9da1-da416be31847"),
+                            Id = new Guid("447a5a8d-9354-4d65-a452-6be8135bb074"),
                             Age = 46,
                             BirthDate = new DateTime(1977, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Tommaso",
@@ -1392,7 +1482,7 @@ namespace Calciolandia_Website.Core.Migrations
                         },
                         new
                         {
-                            Id = new Guid("61a18c6b-519d-42a2-8a7e-fe1faa7464e0"),
+                            Id = new Guid("094caad9-570a-4a4d-81f7-ce2141ad8c48"),
                             Age = 65,
                             BirthDate = new DateTime(1958, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Maurizio",
@@ -1656,7 +1746,7 @@ namespace Calciolandia_Website.Core.Migrations
                         new
                         {
                             Id = new Guid("469c79e1-d881-4c0b-952f-f08af274800d"),
-                            ConcurrencyStamp = "88653cad-d5ac-46b2-9138-ee768498d3f2",
+                            ConcurrencyStamp = "e0519b69-392d-4f6c-92a4-2050215ad104",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -1787,6 +1877,41 @@ namespace Calciolandia_Website.Core.Migrations
                     b.Navigation("FootballClub");
                 });
 
+            modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Fixture", b =>
+                {
+                    b.HasOne("Calciolandia_Website.Core.Data.Models.FootballClub", "AwayTeam")
+                        .WithMany("AwayFixtures")
+                        .HasForeignKey("AwayTeamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Calciolandia_Website.Core.Data.Models.FootballClub", "HomeTeam")
+                        .WithMany("HomeFixtures")
+                        .HasForeignKey("HomeTeamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Calciolandia_Website.Core.Data.Models.League", "League")
+                        .WithMany("Fixtures")
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Calciolandia_Website.Core.Data.Models.Stadium", "Stadium")
+                        .WithMany("Fixtures")
+                        .HasForeignKey("StadiumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AwayTeam");
+
+                    b.Navigation("HomeTeam");
+
+                    b.Navigation("League");
+
+                    b.Navigation("Stadium");
+                });
+
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.FootballClub", b =>
                 {
                     b.HasOne("Calciolandia_Website.Core.Data.Models.League", "League")
@@ -1892,6 +2017,10 @@ namespace Calciolandia_Website.Core.Migrations
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.FootballClub", b =>
                 {
+                    b.Navigation("AwayFixtures");
+
+                    b.Navigation("HomeFixtures");
+
                     b.Navigation("Managers");
 
                     b.Navigation("Players");
@@ -1901,11 +2030,15 @@ namespace Calciolandia_Website.Core.Migrations
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.League", b =>
                 {
+                    b.Navigation("Fixtures");
+
                     b.Navigation("FootballClubs");
                 });
 
             modelBuilder.Entity("Calciolandia_Website.Core.Data.Models.Stadium", b =>
                 {
+                    b.Navigation("Fixtures");
+
                     b.Navigation("FootballClubs");
                 });
 #pragma warning restore 612, 618

@@ -19,21 +19,21 @@ namespace Calciolandia_Website.Core.Data
         public DbSet<President> Presidents { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
+        public DbSet<Fixture> Fixtures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
            
             base.OnModelCreating(builder);
 
-            
-
+           
             builder.Entity<FootballClub>(f =>
             {
                 f.HasMany(f => f.Managers).WithOne(f => f.FootballClub);
                 f.HasMany(f => f.Presidents).WithOne(f => f.FootballClub);
                 f.HasMany(f => f.Players).WithOne(f => f.FootballClub);
-                f.HasMany(f => f.Fixtures).WithOne(f => f.HomeTeam);
-                f.HasMany(f => f.Fixtures).WithOne(f => f.AwayTeam);
+                f.HasMany(f => f.HomeFixtures).WithOne(f => f.HomeTeam).OnDelete(DeleteBehavior.Restrict);
+                f.HasMany(f => f.AwayFixtures).WithOne(f => f.AwayTeam).OnDelete(DeleteBehavior.Restrict);
                 f.Property(f => f.IsDeleted).HasDefaultValue(false);
             });
 
@@ -94,6 +94,7 @@ namespace Calciolandia_Website.Core.Data
             builder.ApplyConfiguration(new PresidentConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.ApplyConfiguration(new FixtureConfiguration());
 
         }
     }
