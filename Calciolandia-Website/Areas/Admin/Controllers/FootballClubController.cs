@@ -1,16 +1,13 @@
-﻿using Calciolandia_Website.Areas.Admin;
-using Calciolandia_Website.Core.Constants;
+﻿using Calciolandia_Website.Core.Constants;
 using Calciolandia_Website.Core.Contracts;
-using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.Xml;
+using System.Data;
 
-namespace Calciolandia_Website.Controllers
+namespace Calciolandia_Website.Areas.Admin.Controllers
 {
-    public class FootballClubController : BaseController
+    public class FootballClubController : AdminController
     {
         private readonly IFootballClubService footballClubService;
 
@@ -20,12 +17,6 @@ namespace Calciolandia_Website.Controllers
         }
         public async Task<IActionResult> Index(int id, string searchString)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Index), nameof(FootballClub), new { area = "Admin" });
-            }
-
             var model = await footballClubService.GetAllAsync(id);
 
             if (!String.IsNullOrEmpty(searchString))
@@ -37,15 +28,8 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add()
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Add), nameof(FootballClub), new { area = "Admin" });
-            }
-
             var model = new FootballClubViewModel()
             {
                 Leagues = await footballClubService.GetLeaguesAsync(),
@@ -56,15 +40,8 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add(FootballClubViewModel model)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Add), nameof(FootballClub), new { area = "Admin" });
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -84,30 +61,17 @@ namespace Calciolandia_Website.Controllers
             }
         }
 
-        [Authorize(Roles = RoleConstants.Admin)]
+       
         public async Task<IActionResult> Delete(int id)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Delete), nameof(FootballClub), new { area = "Admin" });
-            }
-
             await footballClubService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(int id)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Edit), nameof(FootballClub), new { area = "Admin" });
-            }
-
             var model = await footballClubService.GetForEditAsync(id);
 
             model.Leagues = await footballClubService.GetLeaguesAsync();
@@ -117,15 +81,8 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(FootballClubViewModel model)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(Edit), nameof(FootballClub), new { area = "Admin" });
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -134,7 +91,7 @@ namespace Calciolandia_Website.Controllers
             try
             {
                 await footballClubService.EditAsync(model);
-                return RedirectToAction("Index", "FootballClub", new {id = model.LeagueId});
+                return RedirectToAction("Index", "FootballClub", new { id = model.LeagueId });
             }
             catch (Exception)
             {
@@ -147,12 +104,6 @@ namespace Calciolandia_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOne(int id, string searchString)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction(nameof(GetOne), nameof(FootballClub), new { area = "Admin" });
-            }
-
             var model = await footballClubService.GetFootballClubAsync(id);
 
 

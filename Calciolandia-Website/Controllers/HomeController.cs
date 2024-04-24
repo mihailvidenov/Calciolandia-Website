@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Calciolandia_Website.Areas.Admin;
 using System.Net.Mail;
 
 namespace Calciolandia_Website.Controllers
@@ -18,6 +19,12 @@ namespace Calciolandia_Website.Controllers
 
         public IActionResult Index()
         {
+
+            if (this.User.IsInRole(AdminConstants.AdminRoleName))
+            {
+                return RedirectToAction(nameof(Index),"Home", new { area = "Admin" });
+            }
+
             return View();
         }
 

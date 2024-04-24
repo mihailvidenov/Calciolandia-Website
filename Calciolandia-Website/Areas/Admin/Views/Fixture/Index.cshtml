@@ -1,0 +1,93 @@
+﻿@model IEnumerable<GetFixtureViewModel>
+
+@{
+    ViewBag.Title = "Fixtures";
+}
+
+<div class="text-center row">
+   
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="text-light">Logo</th>
+                <th scope="col" class="text-light">Name</th>
+                <th class="text-light"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fixture in Model)
+            {
+                 <tr>
+                    <td><h5 class="text-light">@fixture.Date</h5></td>
+                    <td><h5 class="text-light">@fixture.Time</h5></td>
+                   
+                        <td><h5 class="text-light">@fixture.HomeTeam.Name</h5></td>
+                        <td>
+                            <img style="width: 4rem;" src="@fixture.HomeTeam.LogoImageUrl" alt="Football Club Image">
+                        </td>
+                       
+                    
+                    <td><h5 class="text-light">@fixture.Result</h5></td>
+                    
+                        <td>
+                            <img style="width: 4rem;" src="@fixture.AwayTeam.LogoImageUrl" alt="Football Club Image">
+                        </td>
+                        <td><h5 class="text-light">@fixture.AwayTeam.Name</h5></td>
+                    
+
+                    <td>
+                        <div class="btn-group d-flex justify-content-center">
+                            @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                            {
+                                <div class="mb-3 text-center p-2">
+                                    <a asp-action="Edit" asp-area="Admin" asp-controller="Fixture" asp-route-id="@fixture.Id" class="btn btn-primary">Edit</a>
+                                </div>
+                            }
+                            <div class="mb-3 text-center p-2">
+                                <a asp-action="GetOne" asp-area="Admin" asp-controller="Fixture" asp-route-id="@fixture.Id" class="btn btn-success">Info</a>
+                            </div>
+                            @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                            {
+                                <div class="mb-3 text-center p-2" onclick="myFunction()">
+                                    <a asp-action="Delete" asp-area="Admin" asp-controller="Fixture" asp-route-id="@fixture.Id" class="btn btn-danger">Delete</a>
+                                </div>
+                            }
+                        </div>
+                    </td>
+                </tr>
+
+                @*<div class="card col-4" style="width: 20rem;">
+            <img class="card-img-top" style="width: 18rem;"
+            src="@footballClub.LogoImageUrl" alt="Football Club Image">
+            <div class="card-body">
+
+            <h5 class="card-title mt-1">@footballClub.Name</h5>
+            <p class="mb-0">Nickname: @footballClub.Nickname</p>
+            <p class="mb-0">Trophies: @footballClub.Trophies</p>
+            <p class="mb-0">Founded year: @footballClub.FoundedYear</p>
+            <p class="mb-0">Address: @footballClub.Address</p>
+            <p class="mb-0">City: @footballClub.City</p>
+            </div>
+            <div class="mb-3">
+            <a asp-action="Edit" asp-area="" asp-controller="FootballClub" asp-route-id="@footballClub.Id" class="btn btn-primary">Edit</a>
+            </div>
+            </div>*@
+
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        function myFunction() {
+            if (confirm('Are you sure you want to delete this?')) { return true; }
+            else {
+                event.stopPropagation();
+                event.preventDefault();
+            };
+        }
+    </script>
+}
+

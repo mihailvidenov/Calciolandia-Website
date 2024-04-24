@@ -1,16 +1,13 @@
-﻿using Calciolandia_Website.Areas.Admin;
-using Calciolandia_Website.Core.Constants;
+﻿using Calciolandia_Website.Core.Constants;
 using Calciolandia_Website.Core.Contracts;
-using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
-using Calciolandia_Website.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
-namespace Calciolandia_Website.Controllers
+namespace Calciolandia_Website.Areas.Admin.Controllers
 {
-    public class FixtureController : Controller
+    public class FixtureController : AdminController
     {
         private readonly IFixtureService fixtureService;
 
@@ -21,29 +18,14 @@ namespace Calciolandia_Website.Controllers
 
         public async Task<IActionResult> Index(int id)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("Index", "Fixture", new { area = "Admin" });
-            }
-
             var model = await fixtureService.GetAllFixturesByLeague(id);
-
 
             return View(model);
         }
 
         [HttpGet]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add()
         {
-
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("Add", "Fixture", new { area = "Admin" });
-            }
-
             var model = new AddFixtureViewModel()
             {
                 Stadiums = await fixtureService.GetStadiumsAsync(),
@@ -52,22 +34,14 @@ namespace Calciolandia_Website.Controllers
                 AwayTeams = await fixtureService.GetFootballClubsAsync()
 
             };
-           
+
 
             return View(model);
         }
 
         [HttpPost]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add(AddFixtureViewModel model)
         {
-
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("Add", "Fixture", new { area = "Admin" });
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -88,31 +62,17 @@ namespace Calciolandia_Website.Controllers
 
         }
 
-        [Authorize(Roles = RoleConstants.Admin)]
+        
         public async Task<IActionResult> Delete(Guid id)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("Delete", "Fixture", new { area = "Admin" });
-            }
-
             await fixtureService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(Guid id)
         {
-
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("Edit", "Fixture", new { area = "Admin" });
-            }
-
             var model = await fixtureService.GetForEditAsync(id);
 
 
@@ -125,15 +85,8 @@ namespace Calciolandia_Website.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(AddFixtureViewModel model)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("Edit", "Fixture", new { area = "Admin" });
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -155,12 +108,6 @@ namespace Calciolandia_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOne(Guid id)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("GetOne", "Fixture", new { area = "Admin" });
-            }
-
             var model = await fixtureService.GetFixtureAsync(id);
 
 
@@ -170,20 +117,10 @@ namespace Calciolandia_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> GetByRound(int round)
         {
-
-            if (this.User.IsInRole(AdminConstants.AdminRoleName))
-            {
-                return RedirectToAction("GetByRound", "Fixture", new { area = "Admin" });
-            }
-
             var model = await fixtureService.GetAllFixturesByRound(round);
 
 
             return View(model);
         }
-
-
-
-
     }
 }

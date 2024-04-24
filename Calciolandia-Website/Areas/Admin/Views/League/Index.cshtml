@@ -1,0 +1,51 @@
+﻿@model IEnumerable<LeagueViewModel>
+
+@{
+    ViewBag.Title = "Italian leagues";
+}
+
+<div class=" d-flex justify-content-around">
+    @foreach (var league in Model)
+    {
+        <div class="card w-25">
+            <img class="card-img-top" src="@league.LogoImageUrl" alt="Card image cap">
+            <div class="card-body ">
+                <h5 class="card-title text-center">@league.Name</h5>
+
+            </div>
+            <div class="btn-group d-flex justify-content-center">
+                @if(User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+            <div class="mb-3 text-center p-2">
+                        <a asp-action="Edit" asp-area="Admin" asp-controller="League" asp-route-id="@league.Id" class="btn btn-primary">Edit</a>
+            </div>
+                }
+            <div class="mb-3 text-center p-2">
+                    <a asp-action="Index" asp-area="Admin" asp-controller="FootballClub" asp-route-id="@league.Id" class="btn btn-success">Football Clubs</a>
+            </div>
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Index" asp-area="Admin" asp-controller="Fixture" asp-route-id="@league.Id" class="btn btn-success">Fixtures</a>
+                </div>
+                @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+                    <div class="mb-3 text-center p-2" onclick="myFunction()">
+                        <a asp-action="Delete" asp-area="" asp-controller="League" asp-route-id="@league.Id" class="btn btn-danger">Delete</a>
+                </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts{
+    <script>
+        function myFunction() {
+            if (confirm('Are you sure you want to delete this?')) 
+            {return true;}
+            else 
+            { event.stopPropagation();
+                event.preventDefault(); };
+        }
+    </script>
+}

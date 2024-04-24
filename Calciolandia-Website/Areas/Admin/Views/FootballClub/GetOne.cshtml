@@ -1,0 +1,237 @@
+﻿@model GetFootballClubViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="d-flex justify-content-center">
+    <img  style="width: 4rem;" src="@Model.LogoImageUrl" alt="Football Club Image">
+<h2 class="text-center text-light">@ViewBag.Title</h2>
+</div>
+<hr />
+
+<div class="d-flex justify-content-center">
+<div class="my-card card mb-5 text-warning">
+            <div class="card-body ">
+        <h5 class="card-title text-center">Nickname - <i>@Model.Nickname</i></h5>
+        <h5 class="card-title text-center">Serie A Trophies - <i>@Model.Trophies</i></h5>
+        <h5 class="card-title text-center">Founded Year - <i>@Model.FoundedYear</i></h5>
+        <h5 class="card-title text-center">City - <i>@Model.City</i></h5>
+        <h5 class="card-title text-center">Address - <i>@Model.Address</i></h5>
+       
+              </div>
+ </div>
+ </div>
+
+<div class="d-flex justify-content-center mb-5">
+    @foreach (var stadium in Model.Stadiums)
+    {
+        <div class="card">
+            <h3 class="card-title text-center">Stadium</h3>
+            <img class="card-img-top" src="@stadium.ImageUrl" alt="Card image cap">
+            <div class="card-body ">
+                <h5 class="card-title text-center">@stadium.Name</h5>
+
+            </div>
+            <div class="btn-group d-flex justify-content-center">
+                @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+                    <div class="mb-3 text-center p-2">
+                        <a asp-action="Edit" asp-area="Admin" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-primary">Edit</a>
+            </div>
+                }
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Info" asp-area="Admin" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-success">Info</a>
+                </div>
+                @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+                    <div class="mb-3 text-center p-2" onclick="myFunction()">
+                        <a asp-action="Delete" asp-area="Admin" asp-controller="Stadium" asp-route-id="@stadium.Id" class="btn btn-danger">Delete</a>
+                </div>
+                }
+                </div>
+        </div>
+   
+    }
+    </div>
+
+<div class="d-flex justify-content-around">
+    @foreach (var president in Model.Presidents)
+    {
+        <div class="card">
+            <h3 class="card-title text-center">President</h3>
+            <img class="card-img-top" src="@president.ImageUrl" alt="Card image cap">
+            <div class="card-body ">
+                <h5 class="card-title text-center">@($"{president.FirstName} {president.LastName}")</h5>
+
+            </div>
+            <div class="btn-group d-flex justify-content-center">
+                @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+            <div class="mb-3 text-center p-2">
+                        <a asp-action="Edit" asp-area="Admin" asp-controller="President" asp-route-id="@president.Id" class="btn btn-primary">Edit</a>
+            </div>
+                }
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Info" asp-area="Admin" asp-controller="President" asp-route-id="@president.Id" class="btn btn-success">Info</a>
+                </div>
+                @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+                    <div class="mb-3 text-center p-2" onclick="myFunction()">
+                        <a asp-action="Delete" asp-area="Admin" asp-controller="President" asp-route-id="@president.Id" class="btn btn-danger">Delete</a>
+                </div>
+                }
+                </div>
+        </div>
+   
+    }
+
+    @foreach (var manager in Model.Managers)
+    {
+        <div class="card">
+            <h3 class="card-title text-center">Manager</h3>
+            <img class="card-img-top" src="@manager.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title text-center">@($"{manager.FirstName} {manager.LastName}")</h5>
+
+            </div>
+            <div class="btn-group d-flex justify-content-center">
+                @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+            <div class="mb-3 text-center p-2">
+                <a asp-action="Edit" asp-area="Admin" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-primary">Edit</a>
+            </div>
+                }
+                <div class="mb-3 text-center p-2">
+                    <a asp-action="Info" asp-area="Admin" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-success">Info</a>
+                </div>
+                @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                {
+                    <div class="mb-3 text-center p-2" onclick="myFunction()">
+                        <a asp-action="Delete" asp-area="Admin" asp-controller="Manager" asp-route-id="@manager.Id" class="btn btn-danger">Delete</a>
+                </div>
+                }
+                </div>
+            </div>
+            
+    }
+</div>
+<div class="text-center row ">
+    <h2 class="text-light">Players</h2>
+    <div>
+        <div class="grid-container text-center">
+            @foreach (var player in @Model.Players)
+            {
+                <div class="card p-2">
+                    <h4 class="card-title text-center">@player.Number</h4>
+                    <img class="card-img-top" src="@player.ImageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@($"{player.FirstName} {player.LastName}")</h5>
+                        <h6 class="card-text">@player.Position</h6>
+                       
+                    </div>
+                    <div class="btn-group d-flex  justify-content-center gap-2">
+                        @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                        {
+            <div class="mb-3 align-content-center  text-center">
+                            <a asp-action="Edit" asp-area="Admin" asp-controller="Player" asp-route-id="@player.Id" class="btn  btn-primary ">Edit</a>
+            </div>
+                        }
+                    <div class="mb-3 text-center">
+                        <a asp-action="Info" asp-area="Admin" asp-controller="Player" asp-route-id="@player.Id" class="btn  btn-success">Info</a>
+                    </div>
+                        @if (User?.IsInRole(RoleConstants.Admin) ?? false)
+                        {
+                            <div class="mb-3 text-center" onclick="myFunction()">
+                                <a asp-action="Delete" asp-area="Admin" asp-controller="Player" asp-route-id="@player.Id" class="btn  btn-danger">Delete</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+        
+    }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        @*<form method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label">Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Nickname" class="form-label">Nickname</label>
+                <input asp-for="@Model.Nickname" class="form-control" aria-required="true" />
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Trophies" class="form-label">Serie A Trophies</label>
+                <input asp-for="@Model.Trophies" class="form-control" aria-required="true" />
+                <span asp-validation-for="Trophies" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.FoundedYear" class="form-label">Founded Date</label>
+                <input asp-for="@Model.FoundedYear" class="form-control" aria-required="true" />
+                <span asp-validation-for="FoundedYear" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LogoImageUrl" class="form-label">Logo Image URL</label>
+                <input asp-for="@Model.LogoImageUrl" class="form-control" aria-required="true" />
+                <span asp-validation-for="LogoImageUrl" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Address" class="form-label">Address</label>
+                <input asp-for="@Model.Address" class="form-control" value="" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.City" class="form-label">City</label>
+                <input asp-for="@Model.City" class="form-control" value="" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LeagueId" class="form-label">League</label>
+                <select asp-for="@Model.LeagueId" class="form-control">
+                    @foreach (var league in Model.Leagues)
+                    {
+                        <option value="@league.Id">@league.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="LeagueId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.StadiumId" class="form-label">Stadium</label>
+                <select asp-for="@Model.StadiumId" class="form-control">
+                    @foreach (var stadium in Model.Stadiums)
+                    {
+                        <option value="@stadium.Id">@stadium.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="StadiumId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </form>*@
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function myFunction() {
+            if (confirm('Are you sure you want to delete this?')) { return true; }
+            else {
+                event.stopPropagation();
+                event.preventDefault();
+            };
+        }
+    </script>
+}

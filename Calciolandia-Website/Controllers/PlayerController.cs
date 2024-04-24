@@ -1,5 +1,7 @@
-﻿using Calciolandia_Website.Core.Constants;
+﻿using Calciolandia_Website.Areas.Admin;
+using Calciolandia_Website.Core.Constants;
 using Calciolandia_Website.Core.Contracts;
+using Calciolandia_Website.Core.Data.Models;
 using Calciolandia_Website.Core.Models;
 using Calciolandia_Website.Core.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -28,6 +30,10 @@ namespace Calciolandia_Website.Controllers
         [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add()
         {
+            if (this.User.IsInRole(AdminConstants.AdminRoleName))
+            {
+                return RedirectToAction(nameof(Add), nameof(Player), new { area = "Admin" });
+            }
             var model = new PlayerViewModel()
             {
                 FootballClubs = await playerService.GetAllFootballClubsAsync()
@@ -40,6 +46,11 @@ namespace Calciolandia_Website.Controllers
         [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Add(PlayerViewModel model)
         {
+            if (this.User.IsInRole(AdminConstants.AdminRoleName))
+            {
+                return RedirectToAction(nameof(Add), nameof(Player), new { area = "Admin" });
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -62,6 +73,11 @@ namespace Calciolandia_Website.Controllers
         [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Delete(Guid id)
         {
+            if (this.User.IsInRole(AdminConstants.AdminRoleName))
+            {
+                return RedirectToAction(nameof(Delete), nameof(Player), new { area = "Admin" });
+            }
+
             await playerService.DeleteAsync(id);
 
             return RedirectToAction("Index", "Home");
@@ -71,6 +87,11 @@ namespace Calciolandia_Website.Controllers
         [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(Guid id)
         {
+            if (this.User.IsInRole(AdminConstants.AdminRoleName))
+            {
+                return RedirectToAction(nameof(Edit), nameof(Player), new { area = "Admin" });
+            }
+
             var model = await playerService.GetForEditAsync(id);
 
             model.FootballClubs = await playerService.GetAllFootballClubsAsync();
@@ -82,6 +103,11 @@ namespace Calciolandia_Website.Controllers
         [Authorize(Roles = RoleConstants.Admin)]
         public async Task<IActionResult> Edit(PlayerViewModel model)
         {
+            if (this.User.IsInRole(AdminConstants.AdminRoleName))
+            {
+                return RedirectToAction(nameof(Edit), nameof(Player), new { area = "Admin" });
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -104,6 +130,11 @@ namespace Calciolandia_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> Info(Guid id)
         {
+            if (this.User.IsInRole(AdminConstants.AdminRoleName))
+            {
+                return RedirectToAction(nameof(Info), nameof(Player), new { area = "Admin" });
+            }
+
             var model = await playerService.GetPlayerById(id);
 
 

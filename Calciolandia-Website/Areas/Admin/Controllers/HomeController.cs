@@ -2,7 +2,7 @@
 
 namespace Calciolandia_Website.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AdminController
     {
         public IActionResult Index()
         {

@@ -1,0 +1,78 @@
+﻿@model FootballClubViewModel
+
+@{
+    ViewBag.Title = "Edit Football Club";
+}
+
+<h2 class="text-center text-light">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label text-light">Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Nickname" class="form-label text-light">Nickname</label>
+                <input asp-for="@Model.Nickname" class="form-control" aria-required="true" />
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Trophies" class="form-label text-light">Serie A Trophies</label>
+                <input asp-for="@Model.Trophies" class="form-control" aria-required="true" />
+                <span asp-validation-for="Trophies" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.FoundedYear" class="form-label text-light">Founded Date</label>
+                <input asp-for="@Model.FoundedYear" class="form-control" aria-required="true" />
+                <span asp-validation-for="FoundedYear" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LogoImageUrl" class="form-label text-light">Logo Image URL</label>
+                <input asp-for="@Model.LogoImageUrl" class="form-control" aria-required="true" />
+                <span asp-validation-for="LogoImageUrl" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Address" class="form-label text-light">Address</label>
+                <input asp-for="@Model.Address" class="form-control" aria-required="true" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.City" class="form-label text-light">City</label>
+                <input asp-for="@Model.City" class="form-control"  aria-required="true" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LeagueId" class="form-label text-light">League</label>
+                <select asp-for="@Model.LeagueId" class="form-control">
+                    @foreach (var league in Model.Leagues)
+                    {
+                        <option value="@league.Id">@league.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="LeagueId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.StadiumId" class="form-label text-light">Stadium</label>
+                <select asp-for="@Model.StadiumId" class="form-control">
+                    @foreach (var stadium in Model.Stadiums)
+                    {
+                        <option value="@stadium.Id">@stadium.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="StadiumId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Edit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
